@@ -1,0 +1,750 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const categorias = [
+  { id: 'bobina',    nombre: 'Bobina de Arranque', icono: 'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15' },
+  { id: 'camiseta',  nombre: 'Bolsas Camiseta',    icono: 'M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z' },
+  { id: 'consorcio', nombre: 'Bolsas Consorcio',   icono: 'M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16' },
+  { id: 'residuo',   nombre: 'Bolsas de Residuo',  icono: 'M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z' },
+  { id: 'emblocada', nombre: 'Emblocadas',          icono: 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4' },
+  { id: 'lamina',    nombre: 'Lámina Cristal',      icono: 'M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01' },
+  { id: 'suelta',    nombre: 'Bolsas Sueltas',      icono: 'M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4' },
+];
+
+// multiplo: cantidad mínima y paso de incremento
+const productos = [
+  // Bobinas
+  { id: 'bob-1',  nombre: 'Bobina 15x20 x300 grs',  precio: 5089,  categoria: 'bobina',    imagen: '/images/producto-1.webp', multiplo: 1 },
+  { id: 'bob-2',  nombre: 'Bobina 15x25 x300 grs',  precio: 5089,  categoria: 'bobina',    imagen: '/images/producto-1.webp', multiplo: 1 },
+  { id: 'bob-3',  nombre: 'Bobina 15x30 x300 grs',  precio: 5089,  categoria: 'bobina',    imagen: '/images/producto-1.webp', multiplo: 1 },
+  { id: 'bob-4',  nombre: 'Bobina 20x30 x500 grs',  precio: 3549,  categoria: 'bobina',    imagen: '/images/producto-1.webp', multiplo: 1 },
+  { id: 'bob-5',  nombre: 'Bobina 25x35 x750 grs',  precio: 3549,  categoria: 'bobina',    imagen: '/images/producto-1.webp', multiplo: 1 },
+  { id: 'bob-6',  nombre: 'Bobina 35x45 x750 grs',  precio: 3549,  categoria: 'bobina',    imagen: '/images/producto-1.webp', multiplo: 1 },
+  { id: 'bob-7',  nombre: 'Bobina 40x50 x750 grs',  precio: 3549,  categoria: 'bobina',    imagen: '/images/producto-1.webp', multiplo: 1 },
+  { id: 'bob-8',  nombre: 'Bobina 40x60 x750 grs',  precio: 3549,  categoria: 'bobina',    imagen: '/images/producto-1.webp', multiplo: 1 },
+  { id: 'bob-9',  nombre: 'Bobina 45x60 x1000 grs', precio: 3549,  categoria: 'bobina',    imagen: '/images/producto-1.webp', multiplo: 1 },
+  { id: 'bob-10', nombre: 'Bobina 50x60 x1000 grs', precio: 3549,  categoria: 'bobina',    imagen: '/images/producto-1.webp', multiplo: 1 },
+  { id: 'bob-11', nombre: 'Bobina 50x70 x1000 grs', precio: 3549,  categoria: 'bobina',    imagen: '/images/producto-1.webp', multiplo: 1 },
+
+  // Camiseta
+  { id: 'cam-1',  nombre: 'Camiseta 30x40 Blanco',         precio: 9627,  categoria: 'camiseta', imagen: '/images/producto-2.webp', multiplo: 10 },
+  { id: 'cam-2',  nombre: 'Camiseta 30x40 Color',          precio: 9627,  categoria: 'camiseta', imagen: '/images/producto-2.webp', multiplo: 10 },
+  { id: 'cam-3',  nombre: 'Camiseta 40x50 Blanco',         precio: 13782, categoria: 'camiseta', imagen: '/images/producto-2.webp', multiplo: 10 },
+  { id: 'cam-4',  nombre: 'Camiseta 40x50 Color',          precio: 13782, categoria: 'camiseta', imagen: '/images/producto-2.webp', multiplo: 10 },
+  { id: 'cam-5',  nombre: 'Camiseta 40x50 Eco Verde',      precio: 901,   categoria: 'camiseta', imagen: '/images/producto-2.webp', multiplo: 50 },
+  { id: 'cam-6',  nombre: 'Camiseta 40x50 Liviana Blanco', precio: 12083, categoria: 'camiseta', imagen: '/images/producto-2.webp', multiplo: 10 },
+  { id: 'cam-7',  nombre: 'Camiseta 40x50 Liviana Color',  precio: 12083, categoria: 'camiseta', imagen: '/images/producto-2.webp', multiplo: 10 },
+  { id: 'cam-8',  nombre: 'Camiseta 45x60 Blanco',         precio: 18566, categoria: 'camiseta', imagen: '/images/producto-2.webp', multiplo: 10 },
+  { id: 'cam-9',  nombre: 'Camiseta 45x60 Color',          precio: 18566, categoria: 'camiseta', imagen: '/images/producto-2.webp', multiplo: 10 },
+  { id: 'cam-10', nombre: 'Camiseta 45x60 Eco Verde',      precio: 1378,  categoria: 'camiseta', imagen: '/images/producto-2.webp', multiplo: 50 },
+  { id: 'cam-11', nombre: 'Camiseta 50x70 Blanco',         precio: 31922, categoria: 'camiseta', imagen: '/images/producto-2.webp', multiplo: 5  },
+  { id: 'cam-12', nombre: 'Camiseta 60x80 Blanco',         precio: 40497, categoria: 'camiseta', imagen: '/images/producto-2.webp', multiplo: 5  },
+
+  // Consorcio
+  { id: 'con-1', nombre: 'Consorcio 60x90 Rojo',           precio: 526,  categoria: 'consorcio', imagen: '/images/producto-4.webp', multiplo: 10 },
+  { id: 'con-2', nombre: 'Consorcio 60x90 Negro',          precio: 453,  categoria: 'consorcio', imagen: '/images/producto-4.webp', multiplo: 10 },
+  { id: 'con-3', nombre: 'Consorcio 60x90 Blanco',         precio: 725,  categoria: 'consorcio', imagen: '/images/producto-4.webp', multiplo: 10 },
+  { id: 'con-4', nombre: 'Consorcio 60x90 Azul',           precio: 503,  categoria: 'consorcio', imagen: '/images/producto-4.webp', multiplo: 10 },
+  { id: 'con-5', nombre: 'Consorcio 60x90 Verde',          precio: 503,  categoria: 'consorcio', imagen: '/images/producto-4.webp', multiplo: 10 },
+  { id: 'con-6', nombre: 'Super Consorcio 80x110 Blanco',  precio: 983,  categoria: 'consorcio', imagen: '/images/producto-4.webp', multiplo: 10 },
+  { id: 'con-7', nombre: 'Super Consorcio 80x110 Negro',   precio: 983,  categoria: 'consorcio', imagen: '/images/producto-4.webp', multiplo: 10 },
+  { id: 'con-8', nombre: 'Super Consorcio 90x120 Blanco',  precio: 1260, categoria: 'consorcio', imagen: '/images/producto-4.webp', multiplo: 10 },
+
+  // Residuo
+  { id: 'res-1', nombre: 'Residuo 45x60 Blanco',   precio: 585, categoria: 'residuo', imagen: '/images/producto-4.webp', multiplo: 10 },
+  { id: 'res-2', nombre: 'Residuo 45x60 Amarillo', precio: 620, categoria: 'residuo', imagen: '/images/producto-4.webp', multiplo: 10 },
+
+  // Emblocadas
+  { id: 'emb-1',  nombre: 'Emblocada 15x20', precio: 3098,  categoria: 'emblocada', imagen: '/images/producto-3.webp', multiplo: 1 },
+  { id: 'emb-2',  nombre: 'Emblocada 15x30', precio: 3923,  categoria: 'emblocada', imagen: '/images/producto-3.webp', multiplo: 1 },
+  { id: 'emb-3',  nombre: 'Emblocada 20x30', precio: 4365,  categoria: 'emblocada', imagen: '/images/producto-3.webp', multiplo: 1 },
+  { id: 'emb-4',  nombre: 'Emblocada 25x35', precio: 5514,  categoria: 'emblocada', imagen: '/images/producto-3.webp', multiplo: 1 },
+  { id: 'emb-5',  nombre: 'Emblocada 30x40', precio: 7578,  categoria: 'emblocada', imagen: '/images/producto-3.webp', multiplo: 1 },
+  { id: 'emb-6',  nombre: 'Emblocada 30x60', precio: 11928, categoria: 'emblocada', imagen: '/images/producto-3.webp', multiplo: 1 },
+  { id: 'emb-7',  nombre: 'Emblocada 35x45', precio: 10326, categoria: 'emblocada', imagen: '/images/producto-3.webp', multiplo: 1 },
+  { id: 'emb-8',  nombre: 'Emblocada 35x50', precio: 11422, categoria: 'emblocada', imagen: '/images/producto-3.webp', multiplo: 1 },
+  { id: 'emb-9',  nombre: 'Emblocada 40x50', precio: 13728, categoria: 'emblocada', imagen: '/images/producto-3.webp', multiplo: 1 },
+  { id: 'emb-10', nombre: 'Emblocada 40x60', precio: 16443, categoria: 'emblocada', imagen: '/images/producto-3.webp', multiplo: 1 },
+
+  // Lámina Cristal
+  { id: 'lam-1', nombre: 'Lámina 15x15 x1000 grs',       precio: 3546, categoria: 'lamina', imagen: '/images/producto-5.webp', multiplo: 1 },
+  { id: 'lam-2', nombre: 'Lámina 20x25 x1000 grs',       precio: 3546, categoria: 'lamina', imagen: '/images/producto-5.webp', multiplo: 1 },
+  { id: 'lam-3', nombre: 'Lámina 20x25 x1000 grs Rollo', precio: 3546, categoria: 'lamina', imagen: '/images/producto-5.webp', multiplo: 1 },
+  { id: 'lam-4', nombre: 'Lámina 25x35 x1000 grs',       precio: 3546, categoria: 'lamina', imagen: '/images/producto-5.webp', multiplo: 1 },
+  { id: 'lam-5', nombre: 'Lámina 25x35 x1000 grs Rollo', precio: 3546, categoria: 'lamina', imagen: '/images/producto-5.webp', multiplo: 1 },
+
+  // Sueltas
+  { id: 'sue-1', nombre: 'Bolsa Suelta 50x70 Cristal', precio: 36235, categoria: 'suelta', imagen: '/images/producto-5.webp', multiplo: 5 },
+  { id: 'sue-2', nombre: 'Bolsa Suelta 60x90 Cristal', precio: 62923, categoria: 'suelta', imagen: '/images/producto-5.webp', multiplo: 5 },
+];
+---
+
+<Layout title="Productos | Reco-Plas" description="Catálogo de bolsas de polietileno: camiseta, consorcio, residuo, bobinas de arranque, emblocadas y láminas. Precios y envíos a todo el país.">
+  <Header />
+
+  <!-- HERO -->
+  <section class="relative min-h-[90vh] flex items-center overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-secondary via-secondary to-primary/20"></div>
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute top-20 left-10 w-72 h-72 bg-primary rounded-full blur-3xl opacity-[.06]"></div>
+      <div class="absolute bottom-20 right-10 w-96 h-96 bg-primary rounded-full blur-3xl opacity-[.04]"></div>
+    </div>
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="text-white">
+          <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
+            <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+            <span class="text-sm font-medium">Catálogo de Productos</span>
+          </div>
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+            Nuestros
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-light"> productos</span>
+          </h1>
+          <p class="text-lg text-white/80 mb-8 max-w-xl">
+            Fabricación propia de bolsas de polietileno con envíos a todo el país. Calidad garantizada directo de fábrica.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="#catalogo" class="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5">
+              Ver Catálogo
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+            </a>
+            <a href="/contacto" class="inline-flex items-center justify-center gap-2 border-2 border-white/30 hover:border-white text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:bg-white/10">
+              Pedir Cotización
+            </a>
+          </div>
+        </div>
+        <div class="hidden lg:flex justify-center">
+          <div class="relative">
+            <div class="w-96 h-96 rounded-3xl overflow-hidden shadow-2xl">
+              <img src="/images/hero%20nuevo.webp" alt="Productos RecoPlas" class="w-full h-full object-cover" />
+            </div>
+            <div class="absolute -bottom-4 -left-4 bg-white rounded-xl p-4 shadow-xl">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                  <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <div>
+                  <p class="font-semibold text-secondary text-sm">Envíos a todo el país</p>
+                  <p class="text-xs text-gray">Directo de fábrica</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="absolute bottom-0 left-0 right-0">
+      <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H0Z" fill="white"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- CATÁLOGO -->
+  <section class="py-20" id="catalogo">
+    <div class="container mx-auto px-4">
+
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-primary font-semibold uppercase tracking-wider text-sm">Catálogo</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-secondary mt-3 mb-4">Explorá nuestros productos</h2>
+        <p class="text-gray">Seleccioná una categoría · Los precios son por unidad · Se venden en múltiplos</p>
+      </div>
+
+      <!-- Filtros -->
+      <div class="flex flex-wrap justify-center gap-3 mb-14">
+        <button class="cat-btn active" data-cat="todos">Todos</button>
+        {categorias.map((cat) => (
+          <button class="cat-btn" data-cat={cat.id}>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={cat.icono}></path>
+            </svg>
+            {cat.nombre}
+          </button>
+        ))}
+      </div>
+
+      <!-- Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" id="products-grid">
+        {productos.map((p) => (
+          <article
+            class="product-card"
+            data-categoria={p.categoria}
+            data-id={p.id}
+            data-nombre={p.nombre}
+            data-precio={p.precio}
+            data-multiplo={p.multiplo}
+            data-imagen={p.imagen}
+          >
+            <!-- Imagen -->
+            <div class="pc-img">
+              <img src={p.imagen} alt={p.nombre} loading="lazy" />
+              <span class="pc-badge">{categorias.find(c => c.id === p.categoria)?.nombre}</span>
+            </div>
+
+            <!-- Info -->
+            <div class="pc-body">
+              <h3 class="pc-name">{p.nombre}</h3>
+
+              <!-- Precio unitario -->
+              <div class="pc-price-row">
+                <span class="pc-price">$ {p.precio.toLocaleString('es-AR')}</span>
+                <span class="pc-price-label">/ unidad</span>
+              </div>
+
+              <!-- Múltiplo badge -->
+              <div class="pc-multiplo">
+                <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                {p.multiplo === 1 ? 'Sin mínimo' : `Mínimo ${p.multiplo} · Múltiplos de ${p.multiplo}`}
+              </div>
+
+              <!-- Selector de cantidad -->
+              <div class="pc-qty-wrap">
+                <button class="qty-btn qty-minus" aria-label="Restar">
+                  <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M20 12H4"/></svg>
+                </button>
+                <input
+                  type="number"
+                  class="qty-input"
+                  value={p.multiplo}
+                  min={p.multiplo}
+                  step={p.multiplo}
+                  readonly
+                />
+                <button class="qty-btn qty-plus" aria-label="Sumar">
+                  <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+                </button>
+              </div>
+
+              <!-- Total -->
+              <div class="pc-total">
+                Total: <strong class="pc-total-value">$ {p.precio.toLocaleString('es-AR')}</strong>
+              </div>
+
+              <!-- Botón agregar -->
+              <button class="pc-add-btn add-to-cart" aria-label="Agregar al carrito">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z"/></svg>
+                Agregar al carrito
+              </button>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div id="no-results" class="hidden text-center py-16">
+        <p class="text-gray text-lg">No hay productos en esta categoría.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="relative min-h-[450px] flex items-center overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/sobre%20nosotros/hero%20mejorado_resultado.webp" alt="Planta RecoPlas" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-r from-secondary/95 via-secondary/80 to-secondary/55"></div>
+    </div>
+    <div class="container mx-auto px-4 relative z-10 py-20">
+      <div class="max-w-2xl">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-5 leading-tight">¿No encontrás lo que buscás?</h2>
+        <p class="text-white/80 text-lg mb-8 leading-relaxed">Fabricamos productos a medida. Contactanos y te asesoramos.</p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="/contacto" class="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5">
+            Solicitar Cotización
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+          </a>
+          <a href="https://wa.me/543482200375" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm hover:bg-white/20 border border-white/30 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg>
+            WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+
+  <!-- CARRITO DRAWER -->
+  <div id="cart-overlay" class="cart-overlay"></div>
+  <aside id="cart-drawer" class="cart-drawer">
+    <div class="cart-drawer__header">
+      <h2 class="cart-drawer__title">
+        <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z"/></svg>
+        Mi carrito
+      </h2>
+      <button id="cart-close" class="cart-drawer__close" aria-label="Cerrar carrito">
+        <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <div id="cart-items" class="cart-drawer__items"></div>
+
+    <div id="cart-empty" class="cart-drawer__empty">
+      <svg width="56" height="56" fill="none" stroke="#cbd5e1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z"/></svg>
+      <p>Tu carrito está vacío</p>
+    </div>
+
+    <div id="cart-footer" class="cart-drawer__footer">
+      <div class="cart-drawer__subtotal">
+        <span>Subtotal</span>
+        <strong id="cart-subtotal">$ 0</strong>
+      </div>
+      <a href="/checkout" class="cart-drawer__checkout">
+        Ir al checkout
+        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+      <button id="cart-clear" class="cart-drawer__clear">Vaciar carrito</button>
+    </div>
+  </aside>
+
+  <!-- BOTÓN FLOTANTE CARRITO -->
+  <button id="cart-fab" class="cart-fab" aria-label="Abrir carrito">
+    <svg width="26" height="26" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z"/></svg>
+    <span id="cart-badge" class="cart-badge hidden">0</span>
+  </button>
+
+  <!-- FLY PARTICLE -->
+  <div id="fly-particle" class="fly-particle"></div>
+
+</Layout>
+
+<style>
+/* ===== VARIABLES ===== */
+:root {
+  --g: #00AA28; --gd: #008f22; --gp: #e8f9ed;
+  --dk: #1a1a1a; --gr: #64748b; --border: #e5e7eb;
+  --ease: .4s cubic-bezier(.23,1,.32,1);
+}
+
+/* ===== FILTROS ===== */
+.cat-btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .55rem 1.2rem; border-radius: 999px;
+  font-size: .82rem; font-weight: 600;
+  border: 2px solid var(--border); background: #fff; color: var(--gr);
+  cursor: pointer; transition: all .25s ease;
+}
+.cat-btn:hover { border-color: var(--g); color: var(--g); }
+.cat-btn.active { background: var(--g); border-color: var(--g); color: #fff; }
+
+/* ===== PRODUCT CARD ===== */
+.product-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: box-shadow .3s ease, transform .3s ease;
+  display: flex; flex-direction: column;
+}
+.product-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,.1); transform: translateY(-3px); }
+.product-card.is-hidden { display: none; }
+
+.pc-img {
+  position: relative; background: #f8f9fa;
+  padding: 1.25rem; display: flex; align-items: center; justify-content: center;
+  height: 170px;
+}
+.pc-img img { max-width: 100%; max-height: 100%; object-fit: contain; transition: transform .3s ease; }
+.product-card:hover .pc-img img { transform: scale(1.06); }
+
+.pc-badge {
+  position: absolute; top: 8px; left: 8px;
+  background: var(--g); color: #fff;
+  font-size: .68rem; font-weight: 700; letter-spacing: .03em;
+  padding: .28rem .75rem; border-radius: 999px;
+}
+
+.pc-body { padding: 1rem 1.1rem 1.2rem; display: flex; flex-direction: column; flex: 1; }
+
+.pc-name {
+  font-size: .88rem; font-weight: 700; color: var(--dk);
+  line-height: 1.35; margin: 0 0 .6rem;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+
+.pc-price-row { display: flex; align-items: baseline; gap: .35rem; margin-bottom: .35rem; }
+.pc-price { font-size: 1.2rem; font-weight: 800; color: var(--g); }
+.pc-price-label { font-size: .72rem; color: var(--gr); }
+
+.pc-multiplo {
+  display: inline-flex; align-items: center; gap: .3rem;
+  font-size: .7rem; font-weight: 600; color: var(--gr);
+  background: #f1f5f9; border-radius: 6px;
+  padding: .28rem .6rem; margin-bottom: .85rem;
+}
+
+/* Qty selector */
+.pc-qty-wrap {
+  display: flex; align-items: center;
+  border: 2px solid var(--border); border-radius: 10px;
+  overflow: hidden; margin-bottom: .6rem;
+  transition: border-color .2s;
+}
+.pc-qty-wrap:focus-within { border-color: var(--g); }
+
+.qty-btn {
+  width: 36px; height: 36px; min-width: 36px;
+  background: #f8f9fa; border: none;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--gr); transition: all .2s;
+}
+.qty-btn:hover { background: var(--gp); color: var(--g); }
+
+.qty-input {
+  flex: 1; border: none; outline: none;
+  text-align: center; font-size: .9rem; font-weight: 700;
+  color: var(--dk); background: #fff;
+  -moz-appearance: textfield;
+}
+.qty-input::-webkit-outer-spin-button,
+.qty-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+/* Total */
+.pc-total {
+  font-size: .75rem; color: var(--gr); margin-bottom: .85rem;
+}
+.pc-total-value { color: var(--dk); font-size: .9rem; }
+
+/* Add button */
+.pc-add-btn {
+  display: flex; align-items: center; justify-content: center; gap: .45rem;
+  width: 100%; padding: .7rem;
+  background: var(--g); color: #fff;
+  border: none; border-radius: 10px;
+  font-size: .82rem; font-weight: 700;
+  cursor: pointer; transition: background .25s, transform .2s, box-shadow .25s;
+  margin-top: auto;
+}
+.pc-add-btn:hover { background: var(--gd); box-shadow: 0 6px 20px rgba(0,170,40,.35); transform: translateY(-1px); }
+.pc-add-btn.added {
+  background: #16a34a;
+  pointer-events: none;
+}
+
+/* ===== CART FAB ===== */
+.cart-fab {
+  position: fixed; bottom: 28px; right: 28px; z-index: 900;
+  width: 60px; height: 60px; border-radius: 50%;
+  background: var(--g); color: #fff; border: none;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; box-shadow: 0 6px 24px rgba(0,170,40,.45);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.cart-fab:hover { transform: scale(1.1); box-shadow: 0 10px 32px rgba(0,170,40,.55); }
+
+.cart-badge {
+  position: absolute; top: -4px; right: -4px;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: #ef4444; color: #fff;
+  font-size: .7rem; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  border: 2px solid #fff;
+  animation: badge-pop .3s ease;
+}
+.cart-badge.hidden { display: none; }
+@keyframes badge-pop { 0%{transform:scale(0)} 70%{transform:scale(1.3)} 100%{transform:scale(1)} }
+
+/* ===== CART DRAWER ===== */
+.cart-overlay {
+  position: fixed; inset: 0; z-index: 950;
+  background: rgba(0,0,0,.45); backdrop-filter: blur(2px);
+  opacity: 0; pointer-events: none; transition: opacity .35s ease;
+}
+.cart-overlay.open { opacity: 1; pointer-events: all; }
+
+.cart-drawer {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 960;
+  width: 420px; max-width: 100vw;
+  background: #fff; box-shadow: -8px 0 40px rgba(0,0,0,.12);
+  display: flex; flex-direction: column;
+  transform: translateX(100%); transition: transform .4s cubic-bezier(.23,1,.32,1);
+}
+.cart-drawer.open { transform: translateX(0); }
+
+.cart-drawer__header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.4rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.cart-drawer__title {
+  display: flex; align-items: center; gap: .5rem;
+  font-size: 1.1rem; font-weight: 800; color: var(--dk); margin: 0;
+}
+.cart-drawer__close {
+  width: 36px; height: 36px; border-radius: 8px; border: none;
+  background: #f1f5f9; color: var(--gr);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background .2s;
+}
+.cart-drawer__close:hover { background: #fee2e2; color: #ef4444; }
+
+.cart-drawer__items { flex: 1; overflow-y: auto; padding: 1rem 1.5rem; }
+
+.cart-item {
+  display: flex; gap: 1rem; align-items: flex-start;
+  padding: 1rem 0; border-bottom: 1px solid var(--border);
+}
+.cart-item:last-child { border-bottom: none; }
+.cart-item__img {
+  width: 60px; height: 60px; border-radius: 8px;
+  background: #f8f9fa; overflow: hidden; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.cart-item__img img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.cart-item__info { flex: 1; min-width: 0; }
+.cart-item__name { font-size: .85rem; font-weight: 700; color: var(--dk); margin: 0 0 .2rem; }
+.cart-item__qty { font-size: .75rem; color: var(--gr); margin: 0 0 .3rem; }
+.cart-item__price { font-size: .95rem; font-weight: 800; color: var(--g); margin: 0; }
+.cart-item__remove {
+  background: none; border: none; cursor: pointer;
+  color: #cbd5e1; transition: color .2s; padding: .2rem;
+  flex-shrink: 0;
+}
+.cart-item__remove:hover { color: #ef4444; }
+
+.cart-drawer__empty {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 1rem;
+  color: var(--gr); font-size: .95rem;
+}
+
+.cart-drawer__footer {
+  padding: 1.25rem 1.5rem;
+  border-top: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: .75rem;
+}
+.cart-drawer__subtotal {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 1rem; color: var(--dk);
+}
+.cart-drawer__subtotal strong { font-size: 1.3rem; color: var(--g); }
+.cart-drawer__checkout {
+  display: flex; align-items: center; justify-content: center; gap: .5rem;
+  background: var(--g); color: #fff;
+  padding: .9rem; border-radius: 12px;
+  font-weight: 700; font-size: .95rem; text-decoration: none;
+  transition: background .25s, box-shadow .25s;
+}
+.cart-drawer__checkout:hover { background: var(--gd); box-shadow: 0 6px 20px rgba(0,170,40,.35); }
+.cart-drawer__clear {
+  background: none; border: none; cursor: pointer;
+  color: #94a3b8; font-size: .78rem; text-decoration: underline;
+  text-align: center; transition: color .2s;
+}
+.cart-drawer__clear:hover { color: #ef4444; }
+
+/* ===== FLY PARTICLE ===== */
+.fly-particle {
+  position: fixed; z-index: 9999; pointer-events: none;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--g);
+  opacity: 0;
+}
+.fly-particle.flying {
+  animation: fly-to-cart .6s cubic-bezier(.23,1,.32,1) forwards;
+}
+@keyframes fly-to-cart {
+  0%   { opacity: 1; transform: scale(1); }
+  80%  { opacity: 1; transform: scale(.5); }
+  100% { opacity: 0; transform: scale(0); }
+}
+</style>
+
+<script>
+// ===== TIPOS =====
+interface CartItem {
+  id: string;
+  nombre: string;
+  precio: number;
+  cantidad: number;
+  imagen: string;
+}
+
+// ===== UTILIDADES =====
+function formatARS(n: number): string {
+  return '$ ' + n.toLocaleString('es-AR');
+}
+
+function saveCart(cart: CartItem[]): void {
+  localStorage.setItem('rp-cart', JSON.stringify(cart));
+}
+
+function loadCart(): CartItem[] {
+  try { return JSON.parse(localStorage.getItem('rp-cart') || '[]'); }
+  catch { return []; }
+}
+
+// ===== CARRITO STATE =====
+let cart: CartItem[] = loadCart();
+
+// ===== RENDER CART =====
+function renderCart(): void {
+  const itemsEl  = document.getElementById('cart-items')!;
+  const emptyEl  = document.getElementById('cart-empty')!;
+  const footerEl = document.getElementById('cart-footer')!;
+  const subtotalEl = document.getElementById('cart-subtotal')!;
+  const badge = document.getElementById('cart-badge')!;
+
+  // Badge
+  const totalUnits = cart.reduce((s, i) => s + i.cantidad, 0);
+  badge.textContent = String(totalUnits);
+  badge.classList.toggle('hidden', totalUnits === 0);
+
+  if (cart.length === 0) {
+    itemsEl.innerHTML = '';
+    emptyEl.style.display = 'flex';
+    footerEl.style.display = 'none';
+    return;
+  }
+
+  emptyEl.style.display = 'none';
+  footerEl.style.display = 'flex';
+
+  itemsEl.innerHTML = cart.map(item => `
+    <div class="cart-item" data-id="${item.id}">
+      <div class="cart-item__img">
+        <img src="${item.imagen}" alt="${item.nombre}" />
+      </div>
+      <div class="cart-item__info">
+        <p class="cart-item__name">${item.nombre}</p>
+        <p class="cart-item__qty">Cantidad: ${item.cantidad}</p>
+        <p class="cart-item__price">${formatARS(item.precio * item.cantidad)}</p>
+      </div>
+      <button class="cart-item__remove" data-remove="${item.id}" aria-label="Eliminar">
+        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+  `).join('');
+
+  // Remove buttons
+  itemsEl.querySelectorAll('[data-remove]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = (btn as HTMLElement).dataset.remove!;
+      cart = cart.filter(i => i.id !== id);
+      saveCart(cart);
+      renderCart();
+    });
+  });
+
+  const subtotal = cart.reduce((s, i) => s + i.precio * i.cantidad, 0);
+  subtotalEl.textContent = formatARS(subtotal);
+}
+
+// ===== OPEN / CLOSE DRAWER =====
+function openCart(): void {
+  document.getElementById('cart-drawer')!.classList.add('open');
+  document.getElementById('cart-overlay')!.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCart(): void {
+  document.getElementById('cart-drawer')!.classList.remove('open');
+  document.getElementById('cart-overlay')!.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('cart-fab')!.addEventListener('click', openCart);
+document.getElementById('cart-close')!.addEventListener('click', closeCart);
+document.getElementById('cart-overlay')!.addEventListener('click', closeCart);
+document.getElementById('cart-clear')!.addEventListener('click', () => {
+  cart = []; saveCart(cart); renderCart();
+});
+
+// ===== FLY TO CART ANIMATION =====
+function flyToCart(originEl: HTMLElement): void {
+  const particle = document.getElementById('fly-particle')!;
+  const fab = document.getElementById('cart-fab')!;
+  const origin = originEl.getBoundingClientRect();
+  const target = fab.getBoundingClientRect();
+
+  const startX = origin.left + origin.width / 2 - 7;
+  const startY = origin.top  + origin.height / 2 - 7;
+  const endX   = target.left + target.width  / 2 - 7;
+  const endY   = target.top  + target.height / 2 - 7;
+
+  particle.style.cssText = `left:${startX}px; top:${startY}px; opacity:1;`;
+  particle.classList.remove('flying');
+  void particle.offsetWidth; // reflow
+
+  particle.style.transition = `left .6s cubic-bezier(.23,1,.32,1), top .6s cubic-bezier(.23,1,.32,1), opacity .6s ease, transform .6s ease`;
+  particle.style.left = endX + 'px';
+  particle.style.top  = endY + 'px';
+  particle.style.opacity = '0';
+  particle.style.transform = 'scale(0)';
+
+  setTimeout(() => {
+    particle.style.cssText = '';
+  }, 700);
+}
+
+// ===== PRODUCT CARDS LOGIC =====
+document.querySelectorAll('.product-card').forEach(card => {
+  const el      = card as HTMLElement;
+  const id      = el.dataset.id!;
+  const nombre  = el.dataset.nombre!;
+  const precio  = Number(el.dataset.precio);
+  const multiplo = Number(el.dataset.multiplo);
+  const imagen  = el.dataset.imagen!;
+
+  const input    = el.querySelector('.qty-input') as HTMLInputElement;
+  const totalEl  = el.querySelector('.pc-total-value') as HTMLElement;
+  const minusBtn = el.querySelector('.qty-minus') as HTMLButtonElement;
+  const plusBtn  = el.querySelector('.qty-plus') as HTMLButtonElement;
+  const addBtn   = el.querySelector('.pc-add-btn') as HTMLButtonElement;
+
+  function updateTotal(): void {
+    totalEl.textContent = formatARS(precio * Number(input.value));
+  }
+
+  minusBtn.addEventListener('click', () => {
+    const current = Number(input.value);
+    if (current > multiplo) { input.value = String(current - multiplo); updateTotal(); }
+  });
+
+  plusBtn.addEventListener('click', () => {
+    input.value = String(Number(input.value) + multiplo);
+    updateTotal();
+  });
+
+  addBtn.addEventListener('click', () => {
+    const cantidad = Number(input.value);
+    const existing = cart.find(i => i.id === id);
+    if (existing) { existing.cantidad += cantidad; }
+    else { cart.push({ id, nombre, precio, cantidad, imagen }); }
+    saveCart(cart);
+    renderCart();
+    flyToCart(addBtn);
+
+    // Feedback visual
+    addBtn.textContent = '✓ Agregado';
+    addBtn.classList.add('added');
+    setTimeout(() => {
+      addBtn.innerHTML = `<svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z"/></svg> Agregar al carrito`;
+      addBtn.classList.remove('added');
+    }, 1800);
+  });
+});
+
+// ===== CATEGORY FILTER =====
+document.querySelectorAll('.cat-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const cat = (btn as HTMLElement).dataset.cat!;
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    let count = 0;
+    document.querySelectorAll('.product-card').forEach(card => {
+      const cardCat = (card as HTMLElement).dataset.categoria!;
+      if (cat === 'todos' || cardCat === cat) { (card as HTMLElement).classList.remove('is-hidden'); count++; }
+      else { (card as HTMLElement).classList.add('is-hidden'); }
+    });
+
+    const noResults = document.getElementById('no-results')!;
+    noResults.classList.toggle('hidden', count > 0);
+  });
+});
+
+// ===== INIT =====
+renderCart();
+</script>

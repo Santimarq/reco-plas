@@ -1,0 +1,843 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const infoCards = [
+  {
+    icon: 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z',
+    titulo: 'Dirección',
+    lineas: ['Blvd. J. D. Perón 2656', 'Reconquista, Santa Fe (S3560)'],
+    link: 'https://maps.google.com/?q=Blvd+J+D+Peron+2656+Reconquista+Santa+Fe',
+    linkText: 'Ver en mapa',
+  },
+  {
+    icon: 'M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z',
+    titulo: 'Teléfono / WhatsApp',
+    lineas: ['03482 20-0375'],
+    link: 'https://wa.me/543482200375',
+    linkText: 'Escribinos por WhatsApp',
+  },
+  {
+    icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
+    titulo: 'Email',
+    lineas: ['ventas@recoplas.com.ar'],
+    link: 'mailto:ventas@recoplas.com.ar',
+    linkText: 'Enviar email',
+  },
+  {
+    icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z',
+    titulo: 'Horarios',
+    lineas: ['Lun a Vie: 8:00 - 12:00 / 16:00 - 20:00', 'Sáb: 8:00 - 12:00'],
+  },
+];
+---
+
+<Layout title="Contacto | Reco-Plas" description="Contactanos para pedir presupuesto, consultar stock o coordinar un pedido. RecoPlas, fábrica de bolsas de polietileno en Reconquista, Santa Fe.">
+  <Header />
+
+  <!-- ========== HERO ========== -->
+  <section class="hero">
+    <div class="hero__bg">
+      <div class="hero__gradient"></div>
+      <div class="hero__orb hero__orb--1"></div>
+      <div class="hero__orb hero__orb--2"></div>
+    </div>
+
+    <div class="hero__container">
+      <div class="hero__content">
+        <div class="hero__badge scroll-reveal">
+          <span class="hero__badge-dot"></span>
+          Contacto
+        </div>
+
+        <h1 class="hero__title scroll-reveal">
+          Hablemos sobre
+          <span class="hero__title-accent">tu próximo pedido</span>
+        </h1>
+
+        <p class="hero__text scroll-reveal">
+          Pedí presupuesto, consultá stock o coordiná un envío.
+          Respondemos en menos de 24 horas.
+        </p>
+
+        <div class="hero__actions scroll-reveal">
+          <a href="#formulario" class="rp-btn rp-btn--green">
+            Enviar consulta
+            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+          </a>
+          <a href="https://wa.me/543482200375?text=Hola%2C%20quiero%20consultar%20por%20productos%20RecoPlas" target="_blank" rel="noopener" class="rp-btn rp-btn--ghost">
+            WhatsApp directo
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__wave">
+      <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H0Z" fill="white"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ========== FORM + INFO ========== -->
+  <section class="contacto" id="formulario">
+    <div class="contacto__container">
+      <div class="contacto__grid">
+
+        <!-- Formulario -->
+        <div class="contacto__form-wrap scroll-reveal">
+          <h2 class="contacto__form-title">Envianos tu consulta</h2>
+          <p class="contacto__form-sub">Completá el formulario y te respondemos a la brevedad.</p>
+
+          <form class="form" id="contact-form">
+            <div class="form__row">
+              <div class="form__group">
+                <label class="form__label" for="nombre">Nombre *</label>
+                <input class="form__input" type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+              </div>
+              <div class="form__group">
+                <label class="form__label" for="empresa">Empresa</label>
+                <input class="form__input" type="text" id="empresa" name="empresa" placeholder="Tu empresa (opcional)" />
+              </div>
+            </div>
+
+            <div class="form__row">
+              <div class="form__group">
+                <label class="form__label" for="email">Email *</label>
+                <input class="form__input" type="email" id="email" name="email" placeholder="tu@email.com" required />
+              </div>
+              <div class="form__group">
+                <label class="form__label" for="telefono">Teléfono</label>
+                <input class="form__input" type="tel" id="telefono" name="telefono" placeholder="Ej: 03482 15-200375" />
+              </div>
+            </div>
+
+            <div class="form__group">
+              <label class="form__label" for="asunto">Asunto *</label>
+              <select class="form__input form__select" id="asunto" name="asunto" required>
+                <option value="" disabled selected>Seleccioná un motivo</option>
+                <option value="presupuesto">Solicitar presupuesto</option>
+                <option value="stock">Consultar stock</option>
+                <option value="personalizado">Producto personalizado</option>
+                <option value="envio">Consulta de envíos</option>
+                <option value="otro">Otro</option>
+              </select>
+            </div>
+
+            <div class="form__group">
+              <label class="form__label" for="mensaje">Mensaje *</label>
+              <textarea class="form__input form__textarea" id="mensaje" name="mensaje" rows="5" placeholder="Contanos qué necesitás: producto, medida, cantidad, si lleva impresión..." required></textarea>
+            </div>
+
+            <button type="submit" class="form__submit" id="form-submit-btn">
+              <span class="form__submit-text">Enviar consulta</span>
+              <svg class="form__submit-icon" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+              </svg>
+            </button>
+          </form>
+
+          <!-- Mensaje de éxito -->
+          <div class="form__success hidden" id="form-success">
+            <svg width="48" height="48" fill="none" stroke="#00AA28" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <h3>Consulta enviada</h3>
+            <p>Recibimos tu mensaje. Te respondemos en menos de 24 horas.</p>
+          </div>
+        </div>
+
+        <!-- Info lateral -->
+        <div class="contacto__info">
+          {infoCards.map((card, i) => (
+            <div class="info-card scroll-reveal" style={`transition-delay: ${i * 80}ms`}>
+              <div class="info-card__icon">
+                <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={card.icon}/>
+                </svg>
+              </div>
+              <div class="info-card__body">
+                <h3 class="info-card__title">{card.titulo}</h3>
+                {card.lineas.map((linea) => (
+                  <p class="info-card__text">{linea}</p>
+                ))}
+                {card.link && (
+                  <a href={card.link} target={card.link.startsWith('http') ? '_blank' : undefined} rel={card.link.startsWith('http') ? 'noopener' : undefined} class="info-card__link">
+                    {card.linkText}
+                    <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                  </a>
+                )}
+              </div>
+            </div>
+          ))}
+
+          <!-- WhatsApp CTA -->
+          <div class="wa-card scroll-reveal">
+            <div class="wa-card__content">
+              <svg class="wa-card__icon" width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              <div>
+                <p class="wa-card__title">¿Preferís WhatsApp?</p>
+                <p class="wa-card__text">Escribinos directamente y te atendemos al instante.</p>
+              </div>
+            </div>
+            <a href="https://wa.me/543482200375?text=Hola%2C%20quiero%20consultar%20por%20productos%20RecoPlas" target="_blank" rel="noopener" class="wa-card__btn">
+              Abrir WhatsApp
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== MAPA ========== -->
+  <section class="mapa">
+    <div class="mapa__container scroll-reveal">
+      <div class="mapa__header">
+        <h2 class="mapa__title">Nuestra ubicación</h2>
+        <p class="mapa__sub">Blvd. J. D. Perón 2656, Reconquista, Santa Fe</p>
+      </div>
+      <div class="mapa__frame">
+        <iframe
+          src="https://www.google.com/maps?q=Blvd+Juan+Domingo+Per%C3%B3n+2656,+S3560+Reconquista,+Santa+Fe,+Argentina&output=embed"
+          width="100%"
+          height="400"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Ubicación RecoPlas en Google Maps"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="cta">
+    <div class="cta__bg">
+      <img src="/images/sobre%20nosotros/segundo%20hero%20mejorado_resultado.webp" alt="Planta RecoPlas" loading="lazy" />
+      <div class="cta__overlay"></div>
+    </div>
+    <div class="cta__container scroll-reveal">
+      <div class="cta__badge">
+        <span class="cta__badge-dot"></span>
+        ¿Necesitás ayuda?
+      </div>
+      <h2 class="cta__title">
+        Estamos para
+        <span class="cta__title-accent">resolver tus consultas</span>
+      </h2>
+      <p class="cta__text">
+        Explorá nuestro catálogo completo o escribinos por WhatsApp para una respuesta inmediata.
+      </p>
+      <div class="cta__actions">
+        <a href="/productos" class="rp-btn rp-btn--green">
+          Ver productos
+          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+        <a href="https://wa.me/543482200375" target="_blank" rel="noopener" class="rp-btn rp-btn--ghost">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* ════════════════════════════════════
+     VARIABLES
+     ════════════════════════════════════ */
+  :root {
+    --g: #00AA28;
+    --gd: #008f22;
+    --gp: #e8f9ed;
+    --dk: #111827;
+    --gr: #64748b;
+    --gl-bg: #f8fafc;
+    --border: #e5e7eb;
+    --container: 1280px;
+    --radius: 16px;
+    --radius-lg: 24px;
+    --green: #00AA28;
+    --green-dark: #008f22;
+    --green-pale: #e8f9ed;
+    --dark: #111827;
+    --gray: #64748b;
+    --gray-light: #f8fafc;
+  }
+
+  /* ════════════════════════════════════
+     HERO (mismo estilo que nosotros)
+     ════════════════════════════════════ */
+  .hero {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding-bottom: 5rem;
+  }
+  .hero__bg { position: absolute; inset: 0; }
+  .hero__gradient {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--dk) 0%, #1e293b 50%, rgba(0,170,40,.12) 100%);
+  }
+  .hero__orb {
+    position: absolute; border-radius: 50%;
+    filter: blur(80px); pointer-events: none;
+  }
+  .hero__orb--1 {
+    top: -10%; left: -5%;
+    width: 500px; height: 500px;
+    background: var(--g); opacity: .06;
+  }
+  .hero__orb--2 {
+    bottom: -15%; right: -5%;
+    width: 600px; height: 600px;
+    background: var(--g); opacity: .04;
+  }
+  .hero__container {
+    position: relative; z-index: 2;
+    max-width: 1280px; margin: 0 auto;
+    padding: 0 2rem;
+    width: 100%;
+    text-align: center;
+  }
+  .hero__content {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .hero__badge {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: rgba(255,255,255,.08);
+    backdrop-filter: blur(10px);
+    padding: .5rem 1.2rem; border-radius: 999px;
+    margin-bottom: 1.5rem;
+    color: rgba(255,255,255,.85); font-size: .82rem; font-weight: 600;
+    border: 1px solid rgba(255,255,255,.08);
+  }
+  .hero__badge-dot {
+    width: 8px; height: 8px;
+    background: var(--g); border-radius: 50%;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  .hero__title {
+    font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+    font-weight: 800; line-height: 1.1;
+    color: #fff; margin: 0 0 1.5rem;
+  }
+  .hero__title-accent {
+    display: block;
+    background: linear-gradient(135deg, var(--g) 0%, #00dd35 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero__text {
+    font-size: 1.05rem; line-height: 1.8;
+    color: rgba(255,255,255,.65);
+    margin: 0 auto 2rem; max-width: 520px;
+  }
+  .hero__actions {
+    display: flex; flex-wrap: wrap; gap: 1rem;
+    justify-content: center;
+  }
+  .hero__wave {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    z-index: 3; line-height: 0;
+  }
+  .hero__wave svg { width: 100%; height: auto; display: block; }
+
+  /* Botones hero (mismo estilo nosotros) */
+  .rp-btn {
+    display: inline-flex; align-items: center; gap: .5rem;
+    padding: .85rem 2rem; border-radius: 50px;
+    font-size: .95rem; font-weight: 700;
+    text-decoration: none;
+    transition: all .3s;
+  }
+  .rp-btn--green {
+    background: var(--g); color: #fff;
+  }
+  .rp-btn--green:hover {
+    background: var(--gd);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,170,40,.3);
+  }
+  .rp-btn--ghost {
+    background: rgba(255,255,255,.06);
+    border: 1.5px solid rgba(255,255,255,.18);
+    color: #fff;
+    backdrop-filter: blur(6px);
+  }
+  .rp-btn--ghost:hover {
+    background: rgba(255,255,255,.12);
+    border-color: rgba(255,255,255,.35);
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: .5; transform: scale(1.3); }
+  }
+
+  /* ════════════════════════════════════
+     CONTACTO (form + info)
+     ════════════════════════════════════ */
+  .contacto {
+    padding: 5rem 0 4rem;
+  }
+
+  .contacto__container {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .contacto__grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  @media (max-width: 900px) {
+    .contacto__grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+  }
+
+  /* ── Formulario ── */
+  .contacto__form-wrap {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    box-shadow: 0 4px 24px rgba(0,0,0,.04);
+  }
+
+  .contacto__form-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: .4rem;
+  }
+
+  .contacto__form-sub {
+    font-size: .9rem;
+    color: var(--gray);
+    margin-bottom: 2rem;
+  }
+
+  .form__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  @media (max-width: 550px) {
+    .form__row {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .form__group {
+    margin-bottom: 1rem;
+  }
+
+  .form__row .form__group {
+    margin-bottom: 0;
+  }
+
+  .form__label {
+    display: block;
+    font-size: .82rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: .4rem;
+  }
+
+  .form__input {
+    width: 100%;
+    padding: .75rem 1rem;
+    font-size: .9rem;
+    font-family: inherit;
+    color: var(--dark);
+    background: var(--gray-light);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    outline: none;
+    transition: border-color .2s, box-shadow .2s;
+  }
+
+  .form__input:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgba(0,170,40,.1);
+  }
+
+  .form__input::placeholder {
+    color: #94a3b8;
+  }
+
+  .form__select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' fill='none' stroke='%2364748b' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+  }
+
+  .form__textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .form__submit {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    background: var(--green);
+    color: #fff;
+    font-size: .95rem;
+    font-weight: 700;
+    font-family: inherit;
+    padding: .85rem 2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background .2s, transform .15s, box-shadow .2s;
+    margin-top: .5rem;
+  }
+
+  .form__submit:hover {
+    background: var(--green-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,170,40,.25);
+  }
+
+  .form__submit:active {
+    transform: translateY(0);
+  }
+
+  /* Success message */
+  .form__success {
+    text-align: center;
+    padding: 3rem 1rem;
+  }
+
+  .form__success.hidden {
+    display: none;
+  }
+
+  .form__success h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin: 1rem 0 .5rem;
+  }
+
+  .form__success p {
+    color: var(--gray);
+    font-size: .9rem;
+  }
+
+  /* ── Info cards ── */
+  .contacto__info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .info-card {
+    display: flex;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--g);
+    border: 1px solid var(--gd);
+    border-radius: var(--radius);
+    transition: box-shadow .3s, transform .3s;
+  }
+
+  .info-card:hover {
+    box-shadow: 0 4px 16px rgba(0,170,40,.2);
+    transform: translateY(-2px);
+  }
+
+  .info-card__icon {
+    width: 44px; height: 44px;
+    background: rgba(255,255,255,.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #fff;
+  }
+
+  .info-card__body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .info-card__title {
+    font-size: .9rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: .25rem;
+  }
+
+  .info-card__text {
+    font-size: .85rem;
+    color: rgba(255,255,255,.85);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .info-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    font-size: .8rem;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    margin-top: .4rem;
+    transition: gap .2s;
+    opacity: .85;
+  }
+
+  .info-card__link:hover {
+    gap: .6rem;
+    opacity: 1;
+  }
+
+  /* ── WhatsApp card ── */
+  .wa-card {
+    background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+    border: 1px solid #86efac;
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-top: .5rem;
+  }
+
+  .wa-card__content {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+
+  .wa-card__icon {
+    color: #16a34a;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .wa-card__title {
+    font-size: .95rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin: 0 0 .2rem;
+  }
+
+  .wa-card__text {
+    font-size: .82rem;
+    color: var(--gray);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .wa-card__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    width: 100%;
+    background: #16a34a;
+    color: #fff;
+    font-size: .9rem;
+    font-weight: 700;
+    font-family: inherit;
+    padding: .75rem 1.5rem;
+    border: none;
+    border-radius: 12px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background .2s, transform .15s;
+  }
+
+  .wa-card__btn:hover {
+    background: #15803d;
+    transform: translateY(-1px);
+  }
+
+  /* ════════════════════════════════════
+     MAPA
+     ════════════════════════════════════ */
+  .mapa {
+    padding: 2rem 0 5rem;
+    background: var(--gray-light);
+  }
+
+  .mapa__container {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .mapa__header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .mapa__title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: .4rem;
+  }
+
+  .mapa__sub {
+    color: var(--gray);
+    font-size: .95rem;
+  }
+
+  .mapa__frame {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 24px rgba(0,0,0,.06);
+  }
+
+  .mapa__frame iframe {
+    display: block;
+    width: 100%;
+    height: 400px;
+  }
+
+  /* ════════════════════════════════════
+     CTA (mismo estilo que nosotros)
+     ════════════════════════════════════ */
+  .cta {
+    position: relative;
+    min-height: 70vh;
+    display: flex; align-items: center;
+    padding: 6rem 0;
+    overflow: hidden;
+  }
+  .cta__bg { position: absolute; inset: 0; }
+  .cta__bg img { width: 100%; height: 100%; object-fit: cover; }
+  .cta__overlay {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,.75);
+  }
+  .cta__container {
+    position: relative; z-index: 2;
+    width: 100%; max-width: 1200px; margin: 0 auto;
+    padding: 0 2.5rem;
+  }
+  .cta__badge {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: rgba(255,255,255,.08);
+    backdrop-filter: blur(10px);
+    padding: .5rem 1.2rem; border-radius: 999px;
+    margin-bottom: 1.5rem;
+    color: rgba(255,255,255,.85); font-size: .82rem; font-weight: 600;
+    border: 1px solid rgba(255,255,255,.08);
+  }
+  .cta__badge-dot {
+    width: 8px; height: 8px;
+    background: var(--g); border-radius: 50%;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  .cta__title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800; color: #fff;
+    margin: 0 0 1.25rem; line-height: 1.15;
+    max-width: 550px;
+  }
+  .cta__title-accent {
+    display: block;
+    background: linear-gradient(135deg, var(--g) 0%, #00dd35 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .cta__text {
+    font-size: 1.05rem; color: rgba(255,255,255,.65);
+    line-height: 1.8; margin: 0 0 2.5rem;
+    max-width: 500px;
+  }
+  .cta__actions { display: flex; flex-wrap: wrap; gap: 1rem; }
+
+  @media (max-width: 768px) {
+    .cta { min-height: 50vh; padding: 4rem 0; }
+    .cta__container { padding: 0 1.5rem; }
+    .cta__title { font-size: clamp(1.6rem, 7vw, 2.2rem); }
+    .cta__actions { flex-direction: column; }
+  }
+
+  /* ════════════════════════════════════
+     ANIMATIONS
+     ════════════════════════════════════ */
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .7s ease-out, transform .7s ease-out;
+  }
+
+  .scroll-reveal.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  // ── Scroll reveal ──
+  const revealElements = document.querySelectorAll('.scroll-reveal');
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: '0px 0px -60px 0px' }
+  );
+  revealElements.forEach((el) => revealObserver.observe(el));
+
+  // ── Form handling (placeholder - sin backend por ahora) ──
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('form-submit-btn');
+  const successMsg = document.getElementById('form-success');
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Simular envío
+    if (submitBtn) {
+      submitBtn.setAttribute('disabled', 'true');
+      const textEl = submitBtn.querySelector('.form__submit-text');
+      if (textEl) textEl.textContent = 'Enviando...';
+    }
+
+    setTimeout(() => {
+      form.style.display = 'none';
+      successMsg?.classList.remove('hidden');
+    }, 1200);
+  });
+</script>

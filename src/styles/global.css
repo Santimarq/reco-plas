@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════
+   THEME — Colores de marca RecoPlas
+═══════════════════════════════════ */
+@theme {
+  --color-primary: #00AA28;
+  --color-primary-dark: #008f22;
+  --color-primary-light: #00cc2f;
+  --color-secondary: #111827;
+  --color-gray-light: #f8fafc;
+  --color-gray: #64748b;
+}
+
+/* ═══════════════════════════════════
+   BASE
+═══════════════════════════════════ */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
+  color: var(--color-secondary);
+  background: #fff;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+img { max-width: 100%; height: auto; }
+
+/* ═══════════════════════════════════
+   SHARED ANIMATIONS (used across pages)
+═══════════════════════════════════ */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.animate-fade-in-up  { animation: fadeInUp .8s ease-out forwards; }
+.animate-fade-in     { animation: fadeIn .8s ease-out forwards; }
+.animate-slide-right { animation: slideInRight .8s ease-out forwards; }
+
+.delay-100 { animation-delay: .1s; }
+.delay-200 { animation-delay: .2s; }
+.delay-300 { animation-delay: .3s; }
+.delay-400 { animation-delay: .4s; }
+.delay-500 { animation-delay: .5s; }
+.delay-600 { animation-delay: .6s; }
+
+.animate-on-load { opacity: 0; }
+
+/* Scroll reveal (legacy — used on nosotros/servicios) */
+.scroll-reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s ease-out, transform .7s ease-out; }
+.scroll-reveal.is-revealed { opacity: 1; transform: translateY(0); }
+
+::selection {
+  background: rgba(0, 170, 40, 0.15);
+  color: #111827;
+}

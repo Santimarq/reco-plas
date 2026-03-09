@@ -1,0 +1,1050 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const pilares = [
+  {
+    icon: 'M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z',
+    titulo: 'Fabricación propia',
+    descripcion: 'Control total del proceso productivo que garantiza calidad y uniformidad en cada producto.'
+  },
+  {
+    icon: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z',
+    titulo: 'Tecnología moderna',
+    descripcion: 'Equipamiento de última generación en extrusión, impresión y confección.'
+  },
+  {
+    icon: 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z',
+    titulo: 'Productos a medida',
+    descripcion: 'Medidas, espesores, colores e impresión adaptadas a tu necesidad.'
+  },
+  {
+    icon: 'M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0',
+    titulo: 'Entregas en todo el país',
+    descripcion: 'Logística eficiente con plazos confiables a todo el territorio argentino.'
+  },
+];
+
+const img = {
+  hero: '/images/sobre%20nosotros/hero%20mejorado_resultado.webp',
+  nosotros: '/images/sobre%20nosotros/nosotros%20mejorado_resultado.webp',
+  segundoHero: '/images/sobre%20nosotros/segundo%20hero%20mejorado_resultado.webp',
+  ext1: '/images/sobre%20nosotros/extursion%201%20mejorado_resultado.webp',
+  ext2: '/images/sobre%20nosotros/extrusion%202%20mejorado_resultado.webp',
+  imp1: '/images/sobre%20nosotros/impresion%201%20%20mejorado_resultado.webp',
+  imp2: '/images/sobre%20nosotros/impresion%202%20mejorado_resultado.webp',
+  imp3: '/images/sobre%20nosotros/impresion%203%20mejorado_resultado.webp',
+  conf1: '/images/sobre%20nosotros/confeccion%201%20mejorado_resultado.webp',
+  conf2: '/images/sobre%20nosotros/confeccion%202%20mejorado_resultado.webp',
+  conf3: '/images/sobre%20nosotros/confeccion%203%20mejorado_resultado.webp',
+};
+---
+
+<Layout title="Sobre Nosotros | Reco-Plas" description="Conocé nuestra historia, valores y procesos de fabricación de bolsas de polietileno. RecoPlas, Reconquista, Santa Fe.">
+  <Header />
+
+  <!-- ========== HERO ========== -->
+  <section class="hero">
+    <div class="hero__bg">
+      <div class="hero__gradient"></div>
+      <div class="hero__orb hero__orb--1"></div>
+      <div class="hero__orb hero__orb--2"></div>
+    </div>
+
+    <div class="hero__container">
+      <div class="hero__content">
+        <div class="hero__badge" data-anim="fade-up">
+          <span class="hero__badge-dot"></span>
+          Sobre RecoPlas
+        </div>
+
+        <h1 class="hero__title" data-anim="fade-up" data-delay="100">
+          Más de 13 años fabricando
+          <span class="hero__title-accent">soluciones en polietileno</span>
+        </h1>
+
+        <p class="hero__text" data-anim="fade-up" data-delay="200">
+          Bolsas y film para comercio e industria. Producción a medida,
+          impresión flexográfica y logística propia desde Reconquista, Santa Fe.
+        </p>
+
+        <div class="hero__actions" data-anim="fade-up" data-delay="300">
+          <a href="#conocenos" class="rp-btn rp-btn--green">
+            Conocer la empresa
+            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+          </a>
+          <a href="/productos" class="rp-btn rp-btn--ghost">
+            Ir a la tienda
+          </a>
+        </div>
+      </div>
+
+      <div class="hero__visual" data-anim="fade-left" data-delay="200">
+        <div class="hero__img-wrap">
+          <img src="/images/hero-nosotros.jpeg" alt="Planta RecoPlas - Reconquista, Santa Fe" />
+        </div>
+        <div class="hero__floating-card">
+          <div class="hero__floating-icon">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+            </svg>
+          </div>
+          <div>
+            <p class="hero__floating-title">Reconquista, Santa Fe</p>
+            <p class="hero__floating-sub">Planta propia</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__wave">
+      <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H0Z" fill="white"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ========== NUESTRA HISTORIA ========== -->
+  <section class="historia" id="conocenos">
+    <div class="historia__container">
+
+      <!-- Two columns: Text | Video -->
+      <div class="historia__grid">
+        <div class="historia__story" data-anim="fade-right">
+          <span class="chip-label">Nuestra Historia</span>
+          <h2 class="sec-title">
+            Fabricando con
+            <span class="sec-title--g">compromiso y calidad</span>
+          </h2>
+          <p class="historia__text">
+            <strong>RECO PLAS S.R.L.</strong> inició sus actividades el <strong>16 de enero de 2020</strong>
+            como fábrica de polietileno. El compromiso, capacitación y motivación de las personas que la
+            integran ha sido el motor de su permanente crecimiento.
+          </p>
+          <p class="historia__text">
+            Con una firme convicción en la <strong>mejora continua</strong> en todos sus procesos,
+            trabajamos día a día para obtener un alto grado de calidad y lograr la
+            <strong>satisfacción y fidelización</strong> de cada cliente.
+          </p>
+          <p class="historia__text">
+            Hoy somos un referente en la fabricación de bolsas y film de polietileno, atendiendo a
+            más de <strong>300 clientes</strong> en todo el territorio argentino con logística propia
+            y atención personalizada.
+          </p>
+
+          <div class="historia__stats">
+            <div class="historia__stat">
+              <span class="historia__stat-num">+300</span>
+              <span class="historia__stat-label">Clientes activos</span>
+            </div>
+            <div class="historia__stat">
+              <span class="historia__stat-num">100%</span>
+              <span class="historia__stat-label">Producción nacional</span>
+            </div>
+            <div class="historia__stat">
+              <span class="historia__stat-num">+5</span>
+              <span class="historia__stat-label">Años de experiencia</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="historia__video-col" data-anim="fade-left">
+          <div class="historia__video-wrap">
+            <video autoplay muted loop playsinline poster="/images/fabrica/fabrica-1.webp">
+              <source src="/images/video-fabrica.mp4" type="video/mp4" />
+            </video>
+            <div class="historia__video-badge">
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+              Nuestra planta en acción
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="historia__gallery" data-anim="fade-up" data-delay="150">
+        <button class="historia__gallery-item historia__gallery-item--wide" data-lightbox="/images/fabrica/fabrica-3.webp">
+          <img src="/images/fabrica/fabrica-3.webp" alt="Depósito y logística RecoPlas" loading="lazy" />
+          <div class="historia__gallery-overlay">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+          </div>
+        </button>
+        <button class="historia__gallery-item" data-lightbox="/images/fabrica/fabrica-1.webp">
+          <img src="/images/fabrica/fabrica-1.webp" alt="Máquina extrusora RecoPlas" loading="lazy" />
+          <div class="historia__gallery-overlay">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+          </div>
+        </button>
+        <button class="historia__gallery-item" data-lightbox="/images/fabrica/fabrica-6.webp">
+          <img src="/images/fabrica/fabrica-6.webp" alt="Impresora flexográfica RecoPlas" loading="lazy" />
+          <div class="historia__gallery-overlay">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+          </div>
+        </button>
+        <button class="historia__gallery-item" data-lightbox="/images/fabrica/fabrica-7.webp">
+          <img src="/images/fabrica/fabrica-7.webp" alt="Bolsas impresas RecoPlas" loading="lazy" />
+          <div class="historia__gallery-overlay">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+          </div>
+        </button>
+        <button class="historia__gallery-item" data-lightbox="/images/fabrica/fabrica-5.webp">
+          <img src="/images/fabrica/fabrica-5.webp" alt="Stock de productos RecoPlas" loading="lazy" />
+          <div class="historia__gallery-overlay">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+          </div>
+        </button>
+        <button class="historia__gallery-item historia__gallery-item--wide" data-lightbox="/images/fabrica/fabrica-4.webp">
+          <img src="/images/fabrica/fabrica-4.webp" alt="Almacén de producción RecoPlas" loading="lazy" />
+          <div class="historia__gallery-overlay">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+          </div>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <button class="lightbox__close" aria-label="Cerrar">
+      <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <button class="lightbox__nav lightbox__nav--prev" aria-label="Anterior">
+      <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+    </button>
+    <button class="lightbox__nav lightbox__nav--next" aria-label="Siguiente">
+      <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    </button>
+    <div class="lightbox__img-wrap">
+      <img id="lightbox-img" src="" alt="" />
+    </div>
+    <div class="lightbox__counter" id="lightbox-counter"></div>
+  </div>
+
+  <!-- ========== PILARES ========== -->
+  <section class="pillars">
+    <div class="pillars__container">
+      <div class="pillars__head" data-anim="fade-up">
+        <span class="chip-label chip-label--white">Nuestros Pilares</span>
+        <h2 class="sec-title sec-title--white">¿Por qué elegir RecoPlas?</h2>
+      </div>
+      <div class="pillars__grid">
+        {pilares.map((p, i) => (
+          <div class="pill-card" data-anim="fade-up" data-delay={String(i * 120)}>
+            <div class="pill-card__shine"></div>
+            <div class="pill-card__icon">
+              <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d={p.icon}/></svg>
+            </div>
+            <h3 class="pill-card__title">{p.titulo}</h3>
+            <p class="pill-card__desc">{p.descripcion}</p>
+            <span class="pill-card__num">0{i + 1}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PROCESOS ========== -->
+  <section class="proc">
+    <div class="proc__container">
+      <div class="proc__head" data-anim="fade-up">
+        <span class="chip-label">Procesos</span>
+        <h2 class="sec-title">Nuestro proceso productivo</h2>
+        <p class="sec-sub">Controlamos cada etapa para garantizar productos de calidad superior.</p>
+      </div>
+
+      <!-- Línea de timeline -->
+      <div class="proc__timeline">
+        <div class="proc__timeline-line" id="timeline-line"></div>
+      </div>
+
+      <!-- EXTRUSIÓN -->
+      <div class="proc-step" data-anim="fade-up">
+        <div class="proc-step__imgs">
+          <div class="proc-step__img proc-step__img--main" data-tilt>
+            <img src={img.ext1} alt="Extrusión" />
+          </div>
+          <div class="proc-step__img proc-step__img--sm" data-tilt>
+            <img src={img.ext2} alt="Extrusión" />
+          </div>
+        </div>
+        <div class="proc-step__body">
+          <div class="proc-step__number">01</div>
+          <h3 class="proc-step__title">Extrusión</h3>
+          <p class="proc-step__desc">Transformamos la materia prima en film de polietileno mediante equipos de última generación, controlando espesores y propiedades del material.</p>
+          <span class="proc-step__tag">
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Control de calidad en cada etapa
+          </span>
+        </div>
+      </div>
+
+      <!-- IMPRESIÓN -->
+      <div class="proc-step proc-step--flip" data-anim="fade-up">
+        <div class="proc-step__imgs">
+          <div class="proc-step__img proc-step__img--main" data-tilt>
+            <img src={img.imp1} alt="Impresión" />
+          </div>
+          <div class="proc-step__img-row">
+            <div class="proc-step__img proc-step__img--half" data-tilt><img src={img.imp2} alt="Impresión" /></div>
+            <div class="proc-step__img proc-step__img--half" data-tilt><img src={img.imp3} alt="Impresión" /></div>
+          </div>
+        </div>
+        <div class="proc-step__body">
+          <div class="proc-step__number">02</div>
+          <h3 class="proc-step__title">Impresión</h3>
+          <p class="proc-step__desc">Imprimimos tu marca y diseño sobre el material con tecnología flexográfica de alta definición, logrando colores vibrantes y duraderos.</p>
+          <span class="proc-step__tag">
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Impresión flexográfica HD
+          </span>
+        </div>
+      </div>
+
+      <!-- CONFECCIÓN -->
+      <div class="proc-step" data-anim="fade-up">
+        <div class="proc-step__imgs">
+          <div class="proc-step__img proc-step__img--main" data-tilt>
+            <img src={img.conf1} alt="Confección" />
+          </div>
+          <div class="proc-step__img-row">
+            <div class="proc-step__img proc-step__img--half" data-tilt><img src={img.conf2} alt="Confección" /></div>
+            <div class="proc-step__img proc-step__img--half" data-tilt><img src={img.conf3} alt="Confección" /></div>
+          </div>
+        </div>
+        <div class="proc-step__body">
+          <div class="proc-step__number">03</div>
+          <h3 class="proc-step__title">Confección</h3>
+          <p class="proc-step__desc">Cortamos, sellamos y damos forma final a cada producto con precisión, garantizando terminaciones impecables en cada unidad.</p>
+          <span class="proc-step__tag">
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Terminaciones impecables
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="cta">
+    <div class="cta__bg">
+      <img src={img.segundoHero} alt="Planta RecoPlas" loading="lazy" />
+      <div class="cta__overlay"></div>
+    </div>
+    <div class="cta__container" data-anim="fade-up">
+      <div class="cta__badge">
+        <span class="cta__badge-dot"></span>
+        Trabajemos juntos
+      </div>
+      <h2 class="cta__title">
+        Calidad, tecnología y
+        <span class="cta__title-accent">compromiso en cada producto</span>
+      </h2>
+      <p class="cta__text">
+        Cada producto que sale de nuestra planta lleva el sello de nuestra dedicación y profesionalismo. Pedí tu presupuesto sin compromiso.
+      </p>
+      <div class="cta__actions">
+        <a href="/productos" class="rp-btn rp-btn--green">
+          Ir a la tienda
+          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+        <a href="https://wa.me/543482200375" target="_blank" rel="noopener" class="rp-btn rp-btn--ghost">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Consultanos
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+/* ====== VARIABLES ====== */
+:root {
+  --g: #00AA28;
+  --gd: #008f22;
+  --gl: #33cc52;
+  --gp: #e8f9ed;
+  --dk: #1a1a1a;
+  --gr: #64748b;
+  --gl-bg: #f8faf9;
+  --r: 16px;
+  --rl: 24px;
+  --ease: .45s cubic-bezier(.23,1,.32,1);
+}
+
+/* ====== HERO ====== */
+.hero {
+  position: relative;
+  min-height: 90vh;
+  display: flex; align-items: center;
+  overflow: hidden;
+  padding-bottom: 5rem;
+}
+.hero__bg { position: absolute; inset: 0; }
+.hero__gradient {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--dk) 0%, #1e293b 50%, rgba(0,170,40,.12) 100%);
+}
+.hero__orb {
+  position: absolute; border-radius: 50%;
+  filter: blur(80px); pointer-events: none;
+}
+.hero__orb--1 {
+  top: -10%; left: -5%;
+  width: 500px; height: 500px;
+  background: var(--g); opacity: .06;
+}
+.hero__orb--2 {
+  bottom: -15%; right: -5%;
+  width: 600px; height: 600px;
+  background: var(--g); opacity: .04;
+}
+.hero__container {
+  position: relative; z-index: 2;
+  max-width: 1280px; margin: 0 auto;
+  padding: 0 2rem;
+  display: grid; grid-template-columns: 1.4fr 1fr;
+  gap: 3rem; align-items: center;
+  width: 100%;
+}
+.hero__badge {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: rgba(255,255,255,.08);
+  backdrop-filter: blur(10px);
+  padding: .5rem 1.2rem; border-radius: 999px;
+  margin-bottom: 1.5rem;
+  color: rgba(255,255,255,.85); font-size: .82rem; font-weight: 600;
+  border: 1px solid rgba(255,255,255,.08);
+}
+.hero__badge-dot {
+  width: 8px; height: 8px;
+  background: var(--g); border-radius: 50%;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+.hero__title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+  font-weight: 800; line-height: 1.1;
+  color: #fff; margin: 0 0 1.5rem;
+}
+.hero__title-accent {
+  display: block;
+  background: linear-gradient(135deg, var(--g) 0%, #00dd35 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero__text {
+  font-size: 1.05rem; line-height: 1.8;
+  color: rgba(255,255,255,.65);
+  margin: 0 0 2rem; max-width: 520px;
+}
+.hero__actions { display: flex; flex-wrap: wrap; gap: 1rem; }
+
+/* Hero image */
+.hero__visual { display: none; position: relative; }
+.hero__img-wrap {
+  border-radius: 24px; overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0,0,0,.3);
+  border: 1px solid rgba(255,255,255,.06);
+}
+.hero__img-wrap img {
+  display: block; width: 100%; height: 420px; object-fit: cover;
+}
+.hero__floating-card {
+  position: absolute; bottom: 2rem; left: -2rem;
+  background: #fff; border-radius: 14px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 15px 40px rgba(0,0,0,.15);
+  display: flex; align-items: center; gap: .75rem;
+  animation: float-card 4s ease-in-out infinite;
+  z-index: 3;
+}
+.hero__floating-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: var(--gp);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.hero__floating-icon svg { width: 20px; height: 20px; color: var(--g); }
+.hero__floating-title { font-weight: 700; font-size: .82rem; color: var(--dk); margin: 0; }
+.hero__floating-sub { font-size: .72rem; color: var(--gr); margin: 0; }
+
+.hero__wave {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  z-index: 3; line-height: 0;
+}
+.hero__wave svg { width: 100%; height: auto; display: block; }
+
+@media (min-width: 1024px) { .hero__visual { display: block; } }
+@media (max-width: 1023px) {
+  .hero__container { grid-template-columns: 1fr; }
+  .hero__title { font-size: clamp(2.4rem, 8vw, 3rem); }
+  .hero__content { text-align: center; }
+  .hero__text { margin-left: auto; margin-right: auto; }
+  .hero__actions { justify-content: center; }
+  .hero__badge { margin-left: auto; margin-right: auto; }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .5; transform: scale(1.3); }
+}
+@keyframes float-card {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* ====== SHARED ====== */
+.chip-label {
+  display: inline-block;
+  font-size: .75rem; font-weight: 800; letter-spacing: .15em; text-transform: uppercase;
+  color: var(--g); background: var(--gp);
+  padding: .4rem 1rem; border-radius: 999px; margin-bottom: .75rem;
+}
+.chip-label--white { color: #fff; background: rgba(255,255,255,.15); }
+.sec-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.75rem);
+  font-weight: 800; line-height: 1.15; color: var(--dk);
+  margin: 0 0 1rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,.04);
+}
+.sec-title--white { color: #fff; text-shadow: 0 4px 20px rgba(0,0,0,.25); }
+.sec-title--g { color: var(--g); }
+.sec-sub { color: var(--gr); font-size: 1.05rem; max-width: 520px; margin: 0 auto; line-height: 1.65; }
+.sec-p { color: var(--gr); line-height: 1.8; margin: 0 0 1rem; }
+.sec-p strong { color: var(--dk); }
+
+/* ====== BUTTONS ====== */
+.rp-btn {
+  display: inline-flex !important; align-items: center; justify-content: center; gap: .5rem;
+  font-family: 'Open Sans', sans-serif; font-weight: 700; font-size: .92rem; line-height: 1;
+  padding: .9rem 2rem; border-radius: 999px; border: 2px solid transparent;
+  text-decoration: none !important; cursor: pointer; transition: var(--ease);
+  position: relative; overflow: hidden;
+}
+.rp-btn::after {
+  content: ''; position: absolute; inset: 0; border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255,255,255,.2), transparent);
+  opacity: 0; transition: var(--ease);
+}
+.rp-btn:hover::after { opacity: 1; }
+.rp-btn--green {
+  background: var(--g) !important; color: #fff !important; border-color: var(--g) !important;
+  box-shadow: 0 4px 15px rgba(0,170,40,.3);
+}
+.rp-btn--green:hover {
+  background: var(--gd) !important; border-color: var(--gd) !important;
+  transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,170,40,.45);
+}
+.rp-btn--white {
+  background: #fff !important; color: var(--g) !important; border-color: #fff !important;
+  box-shadow: 0 4px 20px rgba(255,255,255,.25);
+}
+.rp-btn--white:hover {
+  background: var(--gp) !important; transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(255,255,255,.35);
+}
+.rp-btn--ghost {
+  background: transparent !important; color: #fff !important;
+  border-color: rgba(255,255,255,.4) !important;
+}
+.rp-btn--ghost:hover {
+  border-color: #fff !important; background: rgba(255,255,255,.1) !important;
+  transform: translateY(-3px);
+}
+
+/* ====== SCROLL ANIMATIONS ====== */
+[data-anim] {
+  opacity: 0;
+  transition: opacity .8s var(--ease), transform .8s var(--ease);
+}
+[data-anim="fade-up"] { transform: translateY(50px); }
+[data-anim="fade-left"] { transform: translateX(50px); }
+[data-anim="fade-right"] { transform: translateX(-50px); }
+[data-anim].is-visible {
+  opacity: 1 !important;
+  transform: translate(0, 0) !important;
+}
+
+/* ====== HISTORIA ====== */
+.historia { padding: 4rem 0 5rem; background: #fff; }
+.historia__container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+/* Two-column grid */
+.historia__grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: center; margin-bottom: 3rem;
+}
+
+.historia__text {
+  color: var(--gr); font-size: 1.05rem; line-height: 1.8; margin: 0 0 1.25rem;
+}
+.historia__text strong { color: var(--dk); }
+
+/* Trust stats */
+.historia__stats {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  margin-top: 2.5rem; padding-top: 2rem;
+  border-top: 1px solid #e5e7eb;
+}
+.historia__stat { text-align: center; }
+.historia__stat-num {
+  display: block; font-family: 'Montserrat', sans-serif;
+  font-size: 1.8rem; font-weight: 900; color: var(--g);
+  margin-bottom: .25rem;
+}
+.historia__stat-label {
+  font-size: .82rem; color: var(--gr); font-weight: 600;
+}
+
+/* Video */
+.historia__video-col { display: flex; align-items: center; }
+.historia__video-wrap {
+  position: relative; border-radius: var(--rl); overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0,0,0,.15), 0 0 0 1px rgba(0,0,0,.05);
+  width: 100%;
+}
+.historia__video-wrap video {
+  display: block; width: 100%; height: 420px; object-fit: cover;
+}
+.historia__video-badge {
+  position: absolute; bottom: 1rem; left: 1rem;
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: rgba(0,0,0,.65); backdrop-filter: blur(10px);
+  color: #fff; font-size: .78rem; font-weight: 600;
+  padding: .5rem 1rem; border-radius: 999px;
+}
+
+/* Photo Gallery */
+.historia__gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 210px;
+  gap: 1rem;
+}
+.historia__gallery-item {
+  border-radius: var(--r); overflow: hidden;
+  position: relative; cursor: pointer;
+  border: none; padding: 0; background: none;
+}
+.historia__gallery-item img {
+  display: block; width: 100%; height: 100%;
+  object-fit: cover; transition: transform .6s ease;
+}
+.historia__gallery-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,.35);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity .3s ease;
+  color: #fff;
+}
+.historia__gallery-item:hover .historia__gallery-overlay { opacity: 1; }
+.historia__gallery-item:hover img { transform: scale(1.08); }
+.historia__gallery-item--wide { grid-column: span 2; }
+
+/* ====== LIGHTBOX ====== */
+.lightbox {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0,0,0,.92); backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden;
+  transition: opacity .3s ease, visibility .3s ease;
+}
+.lightbox.is-open { opacity: 1; visibility: visible; }
+
+.lightbox__close {
+  position: absolute; top: 1.5rem; right: 1.5rem;
+  background: rgba(255,255,255,.1); border: none; border-radius: 50%;
+  width: 48px; height: 48px;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; cursor: pointer;
+  transition: background .2s;
+}
+.lightbox__close:hover { background: rgba(255,255,255,.25); }
+
+.lightbox__nav {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(255,255,255,.1); border: none; border-radius: 50%;
+  width: 52px; height: 52px;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; cursor: pointer;
+  transition: background .2s, transform .2s;
+}
+.lightbox__nav:hover { background: rgba(255,255,255,.25); }
+.lightbox__nav--prev { left: 1.5rem; }
+.lightbox__nav--next { right: 1.5rem; }
+
+.lightbox__img-wrap {
+  max-width: 85vw; max-height: 85vh;
+  display: flex; align-items: center; justify-content: center;
+}
+.lightbox__img-wrap img {
+  max-width: 100%; max-height: 85vh;
+  border-radius: 12px; object-fit: contain;
+  box-shadow: 0 20px 60px rgba(0,0,0,.5);
+  transition: opacity .25s ease;
+}
+
+.lightbox__counter {
+  position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+  color: rgba(255,255,255,.6); font-size: .85rem; font-weight: 600;
+}
+
+/* ====== PILLARS ====== */
+.pillars {
+  padding: 7rem 0;
+  background: linear-gradient(160deg, var(--g) 0%, #007a1d 100%);
+  position: relative; overflow: hidden;
+}
+.pillars::before, .pillars::after {
+  content: ''; position: absolute; border-radius: 50%; pointer-events: none;
+}
+.pillars::before {
+  width: 500px; height: 500px; top: -200px; right: -150px;
+  background: radial-gradient(circle, rgba(255,255,255,.07), transparent 70%);
+}
+.pillars::after {
+  width: 350px; height: 350px; bottom: -120px; left: -100px;
+  background: radial-gradient(circle, rgba(255,255,255,.05), transparent 70%);
+}
+.pillars__container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 2; }
+.pillars__head { text-align: center; margin-bottom: 4rem; }
+.pillars__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+
+.pill-card {
+  position: relative; background: rgba(255,255,255,.08);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: var(--rl); padding: 2.25rem 1.75rem;
+  transition: var(--ease); overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,.1);
+}
+.pill-card__shine {
+  position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+  background: conic-gradient(from 0deg, transparent, rgba(255,255,255,.06), transparent 40%);
+  animation: rotate-shine 8s linear infinite;
+  pointer-events: none;
+}
+.pill-card:hover {
+  background: rgba(255,255,255,.18);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 50px rgba(0,0,0,.2);
+  border-color: rgba(255,255,255,.3);
+}
+.pill-card__icon {
+  width: 56px; height: 56px; border-radius: 16px;
+  background: rgba(255,255,255,.15); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.25rem; transition: var(--ease);
+  box-shadow: 0 4px 15px rgba(0,0,0,.1);
+}
+.pill-card:hover .pill-card__icon {
+  background: #fff; color: var(--g);
+  transform: scale(1.15) rotate(-5deg);
+  box-shadow: 0 8px 25px rgba(0,0,0,.15);
+}
+.pill-card__title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.08rem; font-weight: 700; color: #fff; margin: 0 0 .5rem;
+}
+.pill-card__desc { font-size: .85rem; color: rgba(255,255,255,.75); line-height: 1.6; margin: 0; }
+.pill-card__num {
+  position: absolute; top: -8px; right: 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 4.5rem; font-weight: 900;
+  color: rgba(255,255,255,.05); line-height: 1; pointer-events: none;
+}
+
+/* ====== PROCESOS ====== */
+.proc { padding: 7rem 0; background: #fff; }
+.proc__container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; }
+.proc__head { text-align: center; margin-bottom: 5rem; }
+
+/* Timeline vertical */
+.proc__timeline {
+  position: absolute; left: 50%; top: 14rem; bottom: 4rem;
+  width: 3px; transform: translateX(-50%);
+  background: rgba(0,170,40,.1); border-radius: 3px;
+  display: none;
+}
+.proc__timeline-line {
+  width: 100%; background: linear-gradient(to bottom, var(--g), var(--gl));
+  border-radius: 3px; height: 0; transition: height 1.5s ease-out;
+  box-shadow: 0 0 20px rgba(0,170,40,.3);
+}
+
+.proc-step {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+  align-items: center; margin-bottom: 6rem;
+}
+.proc-step:last-child { margin-bottom: 0; }
+.proc-step--flip .proc-step__imgs { order: 2; }
+.proc-step--flip .proc-step__body { order: 1; }
+
+/* Images */
+.proc-step__img {
+  border-radius: var(--rl); overflow: hidden;
+  transition: var(--ease);
+}
+.proc-step__img--main {
+  margin-bottom: 1rem;
+  box-shadow:
+    0 20px 50px rgba(0,170,40,.1),
+    0 0 0 1px rgba(0,170,40,.06);
+}
+.proc-step__img--main:hover {
+  box-shadow:
+    0 30px 60px rgba(0,170,40,.18),
+    0 0 0 1px rgba(0,170,40,.12);
+  transform: translateY(-4px);
+}
+.proc-step__img--main img { display: block; width: 100%; height: 300px; object-fit: cover; transition: transform .7s ease; }
+.proc-step__img--main:hover img { transform: scale(1.05); }
+
+.proc-step__img-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.proc-step__img--sm, .proc-step__img--half {
+  box-shadow: 0 12px 35px rgba(0,170,40,.08), 0 0 0 1px rgba(0,170,40,.05);
+}
+.proc-step__img--sm:hover, .proc-step__img--half:hover {
+  box-shadow: 0 18px 45px rgba(0,170,40,.15), 0 0 0 1px rgba(0,170,40,.1);
+  transform: translateY(-3px);
+}
+.proc-step__img--sm img { display: block; width: 100%; height: 190px; object-fit: cover; transition: transform .7s ease; }
+.proc-step__img--sm:hover img { transform: scale(1.05); }
+.proc-step__img--half img { display: block; width: 100%; height: 170px; object-fit: cover; transition: transform .7s ease; }
+.proc-step__img--half:hover img { transform: scale(1.05); }
+
+/* Step content */
+.proc-step__number {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 72px; height: 72px; border-radius: 20px;
+  font-family: 'Montserrat', sans-serif; font-size: 1.6rem; font-weight: 900;
+  color: #fff; background: linear-gradient(135deg, var(--g), var(--gd));
+  box-shadow: 0 8px 25px rgba(0,170,40,.35), inset 0 1px 0 rgba(255,255,255,.2);
+  margin-bottom: 1.5rem;
+  transition: var(--ease);
+}
+.proc-step:hover .proc-step__number {
+  transform: scale(1.1) rotate(-3deg);
+  box-shadow: 0 12px 35px rgba(0,170,40,.45);
+}
+.proc-step__title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 800; color: var(--dk); margin: 0 0 1rem;
+  text-shadow: 0 1px 2px rgba(0,0,0,.04);
+}
+.proc-step__desc {
+  color: var(--gr); font-size: 1.05rem; line-height: 1.8; margin: 0 0 1.75rem;
+}
+.proc-step__tag {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: var(--g) !important; color: #fff !important;
+  font-weight: 700; font-size: .85rem;
+  padding: .65rem 1.3rem; border-radius: 999px;
+  box-shadow: 0 6px 20px rgba(0,170,40,.3);
+  transition: var(--ease);
+}
+.proc-step__tag:hover {
+  box-shadow: 0 10px 30px rgba(0,170,40,.45);
+  transform: translateY(-2px);
+}
+
+/* ====== CTA ====== */
+.cta {
+  position: relative;
+  min-height: 70vh;
+  display: flex; align-items: center;
+  padding: 6rem 0;
+  overflow: hidden;
+}
+.cta__bg { position: absolute; inset: 0; }
+.cta__bg img { width: 100%; height: 100%; object-fit: cover; }
+.cta__overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,.75);
+}
+.cta__container {
+  position: relative; z-index: 2;
+  width: 100%; max-width: 1200px; margin: 0 auto;
+  padding: 0 2.5rem;
+}
+.cta__badge {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: rgba(255,255,255,.08);
+  backdrop-filter: blur(10px);
+  padding: .5rem 1.2rem; border-radius: 999px;
+  margin-bottom: 1.5rem;
+  color: rgba(255,255,255,.85); font-size: .82rem; font-weight: 600;
+  border: 1px solid rgba(255,255,255,.08);
+}
+.cta__badge-dot {
+  width: 8px; height: 8px;
+  background: var(--g); border-radius: 50%;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+.cta__title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800; color: #fff;
+  margin: 0 0 1.25rem; line-height: 1.15;
+  max-width: 550px;
+}
+.cta__title-accent {
+  display: block;
+  background: linear-gradient(135deg, var(--g) 0%, #00dd35 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.cta__text {
+  font-size: 1.05rem; color: rgba(255,255,255,.65);
+  line-height: 1.8; margin: 0 0 2.5rem;
+  max-width: 500px;
+}
+.cta__actions { display: flex; flex-wrap: wrap; gap: 1rem; }
+
+/* ====== KEYFRAMES ====== */
+@keyframes rotate-shine {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ====== RESPONSIVE ====== */
+@media (min-width: 1025px) {
+  .proc__timeline { display: block; }
+}
+@media (max-width: 1024px) {
+  .historia__grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .historia__video-wrap video { height: 320px; }
+  .historia__gallery { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 180px; }
+  .pillars__grid { grid-template-columns: repeat(2, 1fr); }
+  .proc-step { grid-template-columns: 1fr; gap: 2.5rem; }
+  .proc-step--flip .proc-step__imgs,
+  .proc-step--flip .proc-step__body { order: unset; }
+}
+@media (max-width: 640px) {
+  .pillars__grid { grid-template-columns: 1fr; }
+  .historia__stats { grid-template-columns: repeat(3, 1fr); }
+  .historia__video-wrap video { height: 240px; }
+  .historia__gallery { grid-template-columns: 1fr 1fr; grid-auto-rows: 150px; }
+  .historia__gallery-item--wide { grid-column: span 2; }
+  .lightbox__nav { width: 40px; height: 40px; }
+  .lightbox__nav--prev { left: .75rem; }
+  .lightbox__nav--next { right: .75rem; }
+  .cta { min-height: 50vh; padding: 4rem 0; }
+  .cta__container { padding: 0 1.5rem; }
+  .cta__title { font-size: clamp(1.6rem, 7vw, 2.2rem); }
+  .cta__actions { flex-direction: column; }
+  .proc-step__img--main img { height: 220px; }
+  .proc-step__img--half img { height: 130px; }
+  .proc-step__number { width: 56px; height: 56px; font-size: 1.3rem; border-radius: 16px; }
+}
+</style>
+
+<script>
+  // ===== Scroll Animations (IntersectionObserver) =====
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const el = entry.target as HTMLElement;
+          const delay = el.dataset.delay || '0';
+          setTimeout(() => el.classList.add('is-visible'), parseInt(delay));
+          observer.unobserve(el);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+  );
+  document.querySelectorAll('[data-anim]').forEach((el) => observer.observe(el));
+
+  // ===== Timeline progress on scroll =====
+  const timeline = document.getElementById('timeline-line');
+  if (timeline) {
+    const procSection = timeline.closest('.proc__container');
+    window.addEventListener('scroll', () => {
+      if (!procSection) return;
+      const rect = procSection.getBoundingClientRect();
+      const total = rect.height;
+      const scrolled = Math.max(0, -rect.top + window.innerHeight * 0.5);
+      const pct = Math.min(100, (scrolled / total) * 100);
+      timeline.style.height = pct + '%';
+    }, { passive: true });
+  }
+
+  // ===== Subtle tilt on hover (images) =====
+  document.querySelectorAll('[data-tilt]').forEach((el) => {
+    const element = el as HTMLElement;
+    element.addEventListener('mousemove', (e: MouseEvent) => {
+      const rect = element.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      element.style.transform = `perspective(600px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg)`;
+    });
+    element.addEventListener('mouseleave', () => {
+      element.style.transform = 'perspective(600px) rotateY(0) rotateX(0)';
+      element.style.transition = 'transform .5s ease';
+    });
+    element.addEventListener('mouseenter', () => {
+      element.style.transition = 'transform .1s ease';
+    });
+  });
+
+  // ===== Lightbox =====
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
+  const lightboxCounter = document.getElementById('lightbox-counter');
+  const items = document.querySelectorAll('[data-lightbox]');
+  const srcs = Array.from(items).map(el => (el as HTMLElement).dataset.lightbox!);
+  let currentIdx = 0;
+
+  function openLightbox(idx: number) {
+    currentIdx = idx;
+    lightboxImg.src = srcs[currentIdx];
+    lightboxImg.alt = (items[currentIdx].querySelector('img') as HTMLImageElement)?.alt || '';
+    if (lightboxCounter) lightboxCounter.textContent = `${currentIdx + 1} / ${srcs.length}`;
+    lightbox?.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox?.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  function navigate(dir: number) {
+    currentIdx = (currentIdx + dir + srcs.length) % srcs.length;
+    lightboxImg.style.opacity = '0';
+    setTimeout(() => {
+      lightboxImg.src = srcs[currentIdx];
+      lightboxImg.alt = (items[currentIdx].querySelector('img') as HTMLImageElement)?.alt || '';
+      if (lightboxCounter) lightboxCounter.textContent = `${currentIdx + 1} / ${srcs.length}`;
+      lightboxImg.style.opacity = '1';
+    }, 150);
+  }
+
+  items.forEach((item, i) => {
+    item.addEventListener('click', () => openLightbox(i));
+  });
+
+  document.querySelector('.lightbox__close')?.addEventListener('click', closeLightbox);
+  document.querySelector('.lightbox__nav--prev')?.addEventListener('click', () => navigate(-1));
+  document.querySelector('.lightbox__nav--next')?.addEventListener('click', () => navigate(1));
+
+  lightbox?.addEventListener('click', (e) => {
+    if (e.target === lightbox || (e.target as HTMLElement).classList.contains('lightbox__img-wrap')) {
+      closeLightbox();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox?.classList.contains('is-open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') navigate(-1);
+    if (e.key === 'ArrowRight') navigate(1);
+  });
+</script>
