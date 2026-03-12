@@ -41,6 +41,7 @@ logo nuevos reco plas/
 
 # Videos y archivos pesados
 *.mp4
+!public/images/video-fabrica.mp4
 *.jpeg
 !public/**/*.jpeg
 
