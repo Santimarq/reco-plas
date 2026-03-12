@@ -2,8 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { getCategorias } from '../lib/wordpress';
 
-const categorias = [
+const categoriasLineas = [
   {
     titulo: 'Línea Estándar',
     descripcion: 'Bobinas, camiseta, consorcio, emblocadas y más. Medidas listas para entregar.',
@@ -24,14 +25,9 @@ const categorias = [
   },
 ];
 
-const productos = [
-  { nombre: 'Bobina de Arranque', categoria: 'Bobinas', imagen: '/images/productos/bobina-principal.png' },
-  { nombre: 'Bolsa Camiseta 40x50', categoria: 'Camiseta', imagen: '/images/productos/camiseta-40x50.png' },
-  { nombre: 'Bolsa Camiseta Color', categoria: 'Camiseta', imagen: '/images/productos/camiseta-30x40-color.png' },
-  { nombre: 'Bolsa Emblocada', categoria: 'Emblocadas', imagen: '/images/productos/emblocada-principal.png' },
-  { nombre: 'Bolsa Riñón', categoria: 'Riñón', imagen: '/images/productos/rinon-principal.png' },
-  { nombre: 'Bolsa Camiseta Eco', categoria: 'Camiseta', imagen: '/images/productos/camiseta-eco.png' },
-];
+// Categorías dinámicas de WooCommerce
+const wcCategorias = await getCategorias();
+const categoriasProductos = wcCategorias.filter(c => c.count > 0 && c.slug !== 'sin-categorizar');
 
 const stats = [
   { valor: '+13', label: 'Años de experiencia' },
@@ -224,7 +220,7 @@ const heroSlides = [
       </div>
 
       <div class="categories__grid">
-        {categorias.map((cat, i) => (
+        {categoriasLineas.map((cat, i) => (
           <a href={cat.link} class="cat-card" data-reveal data-delay={String(i)}>
             <img src={cat.imagen} alt={cat.titulo} class="cat-card__img" loading="lazy" />
             <div class="cat-card__overlay"></div>
@@ -244,41 +240,71 @@ const heroSlides = [
     </div>
   </section>
 
-  <!-- ═══ PRODUCTOS DESTACADOS ═══ -->
+  <!-- ═══ NUESTROS PRODUCTOS ═══ -->
   <section class="featured">
     <div class="featured__container">
-      <div class="featured__header" data-reveal>
-        <div>
-          <span class="section-tag">Catálogo</span>
-          <h2 class="section-title">Algunos de nuestros productos</h2>
-          <p class="section-text">Conocé nuestra variedad completa en la tienda online.</p>
-        </div>
-        <a href="/productos" class="btn btn--primary">
-          Ir a la tienda
-          <svg class="btn__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-          </svg>
-        </a>
+      <div class="featured__top" data-reveal>
+        <span class="section-tag">Catálogo</span>
+        <h2 class="section-title">Explorá nuestras <span class="section-title__accent">categorías</span></h2>
+        <p class="section-text">En RecoPlas fabricamos diferentes tipos de bolsas pensadas para cada uso: comercio, industria, logística y más.</p>
       </div>
 
-      <div class="featured__grid">
-        {productos.map((producto, i) => (
-          <a href="/productos" class="product-card" data-reveal data-delay={String(i % 4)}>
-            <div class="product-card__img-wrap">
-              <img src={producto.imagen} alt={producto.nombre} loading="lazy" />
-              <span class="product-card__badge">{producto.categoria}</span>
-            </div>
-            <div class="product-card__body">
-              <h3 class="product-card__name">{producto.nombre}</h3>
-              <span class="product-card__cta">
-                Ver en tienda
+      <div class="showcase" data-reveal data-delay="1">
+        <!-- Imagen izquierda -->
+        <div class="showcase__preview">
+          <div class="showcase__img-wrap" id="showcase-img-wrap">
+            {categoriasProductos.map((cat, i) => (
+              cat.image?.src ? (
+                <img
+                  src={cat.image.src}
+                  alt={cat.name}
+                  class:list={['showcase__img', { 'showcase__img--active': i === 0 }]}
+                  data-cat-index={i}
+                  loading="lazy"
+                />
+              ) : (
+                <div
+                  class:list={['showcase__img showcase__img--fallback', { 'showcase__img--active': i === 0 }]}
+                  data-cat-index={i}
+                ></div>
+              )
+            ))}
+          </div>
+          <div class="showcase__img-badge" id="showcase-badge">
+            <span class="showcase__img-badge-count" id="showcase-badge-count">{categoriasProductos[0]?.count || 0}</span>
+            <span class="showcase__img-badge-label">productos</span>
+          </div>
+        </div>
+
+        <!-- Lista derecha -->
+        <div class="showcase__list">
+          {categoriasProductos.map((cat, i) => (
+            <a
+              href={`/productos?cat=${cat.slug}#catalogo`}
+              class:list={['showcase__item', { 'showcase__item--active': i === 0 }]}
+              data-cat-index={i}
+              data-cat-count={cat.count}
+            >
+              <span class="showcase__item-index">0{i + 1}</span>
+              <div class="showcase__item-text">
+                <h3 class="showcase__item-name">{cat.name}</h3>
+                <span class="showcase__item-count">{cat.count} {cat.count === 1 ? 'producto' : 'productos'}</span>
+              </div>
+              <div class="showcase__item-arrow">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                 </svg>
-              </span>
-            </div>
+              </div>
+            </a>
+          ))}
+
+          <a href="/productos" class="btn btn--primary showcase__btn">
+            Ir a la tienda
+            <svg class="btn__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
           </a>
-        ))}
+        </div>
       </div>
     </div>
   </section>
@@ -835,77 +861,197 @@ const heroSlides = [
   }
 
   /* ═══════════════════════════════════════════
-     FEATURED PRODUCTS
+     FEATURED PRODUCTS — Showcase
   ═══════════════════════════════════════════ */
-  .featured { padding: 6rem 0 7rem; background: #fff; }
+  .featured {
+    padding: 6rem 0 7rem;
+    background: var(--gray-light);
+  }
   .featured__container {
     max-width: var(--container); margin: 0 auto; padding: 0 2.5rem;
   }
-  .featured__header {
-    display: flex; justify-content: space-between;
-    align-items: center; flex-wrap: wrap;
-    gap: 1.5rem; margin-bottom: 3rem;
+  .featured__top {
+    text-align: center;
+    max-width: 550px;
+    margin: 0 auto 3rem;
   }
-  .featured__header .section-title { margin-bottom: .25rem; }
-  .featured__header .section-text { margin-bottom: 0; }
+  .featured__top .section-title { margin-bottom: .5rem; }
+  .featured__top .section-text { margin-bottom: 0; }
 
-  .featured__grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem;
-  }
-
-  .product-card {
-    background: #fff; border-radius: var(--radius);
-    border: 1px solid var(--border);
-    overflow: hidden; text-decoration: none;
-    display: block;
-    transition: all .35s ease;
-  }
-  .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0,0,0,.07);
-    border-color: transparent;
+  /* Showcase: split layout */
+  .showcase {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 3rem;
+    align-items: stretch;
   }
 
-  .product-card__img-wrap {
-    position: relative; aspect-ratio: 4/3;
+  /* === Preview (left) === */
+  .showcase__preview {
+    position: relative;
+    border-radius: var(--radius-lg);
     overflow: hidden;
+    background: #fff;
+    min-height: 480px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.08);
+    border: 1px solid var(--border);
   }
-  .product-card__img-wrap img {
-    width: 100%; height: 100%; object-fit: cover;
+  .showcase__img-wrap {
+    position: absolute; inset: 0;
+  }
+  .showcase__img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transform: scale(1.04);
+    transition: opacity .5s ease, transform .5s ease;
+  }
+  .showcase__img--fallback {
+    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+  }
+  .showcase__img--active {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Badge flotante */
+  .showcase__img-badge {
+    position: absolute;
+    bottom: 1.5rem; left: 1.5rem;
+    background: #fff;
+    border-radius: 14px;
+    padding: .75rem 1.25rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,.12);
+    display: flex; align-items: center; gap: .5rem;
+    z-index: 3;
     transition: transform .4s ease;
   }
-  .product-card:hover .product-card__img-wrap img { transform: scale(1.06); }
-
-  .product-card__badge {
-    position: absolute; top: 1rem; left: 1rem;
-    background: var(--green); color: #fff;
-    font-size: .7rem; font-weight: 700;
-    padding: .35rem .85rem; border-radius: 999px;
+  .showcase__preview:hover .showcase__img-badge {
+    transform: translateY(-3px);
+  }
+  .showcase__img-badge-count {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem; font-weight: 900;
+    color: var(--green);
+    line-height: 1;
+  }
+  .showcase__img-badge-label {
+    font-size: .75rem; font-weight: 600;
+    color: var(--gray);
+    line-height: 1.2;
   }
 
-  .product-card__body {
-    padding: 1.25rem 1.5rem; border-top: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 1rem;
+  /* === List (right) === */
+  .showcase__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
   }
-  .product-card__name {
-    font-size: .92rem; font-weight: 700; color: var(--dark);
-    margin: 0;
+
+  .showcase__item {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.15rem 1.5rem;
+    text-decoration: none;
+    border-radius: 14px;
+    position: relative;
+    transition: all .3s ease;
+  }
+  .showcase__item + .showcase__item {
+    border-top: 1px solid var(--border);
+  }
+  .showcase__item--active,
+  .showcase__item:hover {
+    background: #fff;
+    box-shadow: 0 4px 20px rgba(0,0,0,.06);
+    border-color: transparent;
+  }
+  .showcase__item--active + .showcase__item,
+  .showcase__item:hover + .showcase__item {
+    border-top-color: transparent;
+  }
+
+  /* Index number */
+  .showcase__item-index {
+    font-family: 'Montserrat', sans-serif;
+    font-size: .8rem; font-weight: 800;
+    color: var(--border);
+    width: 28px; flex-shrink: 0;
     transition: color .3s;
   }
-  .product-card:hover .product-card__name { color: var(--green); }
-
-  .product-card__cta {
-    display: inline-flex; align-items: center; gap: .5rem;
-    font-size: .85rem; font-weight: 700; color: var(--green);
-    white-space: nowrap;
-    transition: gap .3s;
+  .showcase__item--active .showcase__item-index,
+  .showcase__item:hover .showcase__item-index {
+    color: var(--green);
   }
-  .product-card__cta svg { width: 16px; height: 16px; }
-  .product-card:hover .product-card__cta { gap: .85rem; }
 
-  @media (max-width: 900px) { .featured__grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 480px) { .featured__grid { grid-template-columns: 1fr; } }
+  /* Text */
+  .showcase__item-text { flex: 1; min-width: 0; }
+  .showcase__item-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.05rem; font-weight: 800;
+    color: var(--dark);
+    margin: 0 0 .15rem; line-height: 1.3;
+    transition: color .3s;
+  }
+  .showcase__item--active .showcase__item-name,
+  .showcase__item:hover .showcase__item-name {
+    color: var(--green-dark);
+  }
+  .showcase__item-count {
+    font-size: .75rem; font-weight: 600;
+    color: var(--gray);
+  }
+
+  /* Arrow */
+  .showcase__item-arrow {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: transparent;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: all .3s ease;
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  .showcase__item-arrow svg {
+    width: 18px; height: 18px;
+    color: var(--green);
+  }
+  .showcase__item--active .showcase__item-arrow,
+  .showcase__item:hover .showcase__item-arrow {
+    opacity: 1;
+    transform: translateX(0);
+    background: var(--green-pale);
+  }
+
+  /* CTA button */
+  .showcase__btn {
+    margin-top: 1.25rem;
+    align-self: flex-start;
+  }
+
+  @media (max-width: 900px) {
+    .showcase {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .showcase__preview {
+      min-height: 320px;
+    }
+  }
+  @media (max-width: 480px) {
+    .featured { padding: 4rem 0 5rem; }
+    .featured__container { padding: 0 1.5rem; }
+    .featured__top { margin-bottom: 2rem; }
+    .showcase__preview { min-height: 260px; }
+    .showcase__item { padding: .9rem 1rem; gap: 1rem; }
+    .showcase__item-index { display: none; }
+    .showcase__item-name { font-size: .95rem; }
+    .showcase__item-arrow { opacity: 1; transform: translateX(0); }
+    .showcase__btn { width: 100%; justify-content: center; }
+  }
 
   /* ═══════════════════════════════════════════
      CLIENTS
@@ -1019,9 +1165,6 @@ const heroSlides = [
     .cta__actions { flex-direction: column; }
     .cta__actions .btn { justify-content: center; }
 
-    .featured__container { padding: 0 1.5rem; }
-    .featured__header { flex-direction: column; align-items: flex-start; }
-
     .clients__header { padding: 0 1.5rem; }
 
     .categories__container { padding: 0 1.5rem; }
@@ -1081,5 +1224,39 @@ const heroSlides = [
     });
 
     startAuto();
+  })();
+
+  // Showcase: interactive category preview
+  (() => {
+    const items = document.querySelectorAll<HTMLElement>('.showcase__item');
+    const images = document.querySelectorAll<HTMLElement>('.showcase__img');
+    const badgeCount = document.getElementById('showcase-badge-count');
+    if (items.length === 0 || images.length === 0) return;
+
+    let activeIndex = 0;
+
+    function activate(index: number) {
+      if (index === activeIndex) return;
+
+      items[activeIndex].classList.remove('showcase__item--active');
+      items[index].classList.add('showcase__item--active');
+
+      images[activeIndex].classList.remove('showcase__img--active');
+      images[index].classList.add('showcase__img--active');
+
+      if (badgeCount) {
+        const count = items[index].dataset.catCount || '0';
+        badgeCount.textContent = count;
+      }
+
+      activeIndex = index;
+    }
+
+    items.forEach((item) => {
+      item.addEventListener('mouseenter', () => {
+        const idx = Number(item.dataset.catIndex);
+        activate(idx);
+      });
+    });
   })();
 </script>

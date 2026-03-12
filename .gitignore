@@ -43,3 +43,10 @@ logo nuevos reco plas/
 *.mp4
 *.jpeg
 !public/**/*.jpeg
+
+# Archivos del cliente (Excel, CSV importación)
+*.xlsx
+woocommerce-import.csv
+
+# Local Netlify folder
+.netlify

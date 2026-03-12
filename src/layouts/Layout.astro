@@ -1,15 +1,28 @@
 ---
 import '../styles/global.css';
+import ShopFloat from '../components/ShopFloat.astro';
 
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  type?: string;
+  noindex?: boolean;
 }
+
+const siteName = "RecoPlas";
+const siteUrl = "https://www.recoplas.com.ar";
 
 const {
   title = "RecoPlas | Fábrica de Bolsas de Polietileno",
-  description = "Fabricación de bolsas de polietileno estándar y personalizadas. Envíos a toda Argentina. Calidad directo de fábrica."
+  description = "Fabricación de bolsas de polietileno estándar y personalizadas. Envíos a toda Argentina. Calidad directo de fábrica.",
+  image = "/images/logos/logo-web.png",
+  type = "website",
+  noindex = false,
 } = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
+const ogImage = image.startsWith("http") ? image : `${siteUrl}${image}`;
 ---
 
 <!doctype html>
@@ -19,13 +32,97 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#00AA28" />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Canonical -->
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content="es_AR" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Geo -->
+    <meta name="geo.region" content="AR-S" />
+    <meta name="geo.placename" content="Reconquista, Santa Fe" />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
     <title>{title}</title>
+
+    <!-- JSON-LD: Organization + LocalBusiness -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "RecoPlas S.R.L.",
+      "description": "Fábrica de bolsas y film de polietileno. Línea estándar, impresa y personalizada. Envíos a toda Argentina.",
+      "url": siteUrl,
+      "logo": `${siteUrl}/images/logos/logo-web.png`,
+      "image": `${siteUrl}/images/og-default.jpg`,
+      "telephone": "+54-3482-200375",
+      "email": "ventas@recoplas.com.ar",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Blvd. J. D. Perón 2656",
+        "addressLocality": "Reconquista",
+        "addressRegion": "Santa Fe",
+        "postalCode": "S3560",
+        "addressCountry": "AR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -29.1458,
+        "longitude": -59.6467
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "08:00",
+          "closes": "12:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "16:00",
+          "closes": "20:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "08:00",
+          "closes": "12:00"
+        }
+      ],
+      "areaServed": {
+        "@type": "Country",
+        "name": "Argentina"
+      },
+      "sameAs": [
+        "https://instagram.com/reco.plas",
+        "https://facebook.com/recoplas",
+        "https://wa.me/543482200375"
+      ]
+    })} />
   </head>
   <body>
     <slot />
+    <ShopFloat />
   </body>
 </html>

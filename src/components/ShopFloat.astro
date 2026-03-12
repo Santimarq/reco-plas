@@ -1,0 +1,120 @@
+---
+// Floating "Comprar ahora" banner - aparece en todas las páginas excepto /productos
+---
+
+<div id="shop-float" class="shop-float">
+  <a href="/productos" class="shop-float__btn">
+    <span class="shop-float__pulse"></span>
+    <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z"/>
+    </svg>
+    <span class="shop-float__text">Comprar ahora</span>
+    <svg class="shop-float__arrow" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+    </svg>
+  </a>
+</div>
+
+<style>
+  .shop-float {
+    position: fixed;
+    bottom: 28px;
+    left: 28px;
+    z-index: 890;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .4s ease, transform .4s ease;
+    pointer-events: none;
+  }
+  .shop-float.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+  }
+
+  .shop-float__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    padding: .75rem 1.4rem .75rem 1.1rem;
+    background: linear-gradient(135deg, #00AA28 0%, #008f22 100%);
+    color: #fff;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: .85rem;
+    font-weight: 700;
+    box-shadow: 0 6px 24px rgba(0,170,40,.4), 0 2px 8px rgba(0,0,0,.1);
+    transition: all .3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .shop-float__btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,.15) 100%);
+    opacity: 0;
+    transition: opacity .3s;
+  }
+  .shop-float__btn:hover::after { opacity: 1; }
+  .shop-float__btn:hover {
+    box-shadow: 0 10px 32px rgba(0,170,40,.5), 0 4px 12px rgba(0,0,0,.15);
+    transform: translateY(-2px);
+  }
+
+  .shop-float__pulse {
+    position: absolute;
+    top: -2px; right: -2px;
+    width: 10px; height: 10px;
+    background: #ef4444;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    animation: sf-pulse 2s ease-in-out infinite;
+  }
+
+  .shop-float__arrow {
+    transition: transform .3s ease;
+  }
+  .shop-float__btn:hover .shop-float__arrow {
+    transform: translateX(3px);
+  }
+
+  @keyframes sf-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: .5; transform: scale(.8); }
+  }
+
+  @media (max-width: 640px) {
+    .shop-float { bottom: 20px; left: 20px; }
+    .shop-float__text { display: none; }
+    .shop-float__arrow { display: none; }
+    .shop-float__btn { padding: .85rem; border-radius: 50%; width: 52px; height: 52px; justify-content: center; }
+  }
+</style>
+
+<script>
+  const shopFloat = document.getElementById('shop-float');
+  if (shopFloat) {
+    // No mostrar en página de productos (ya están ahí)
+    const isProductos = window.location.pathname.startsWith('/productos');
+
+    if (!isProductos) {
+      // Mostrar después de scroll
+      let shown = false;
+      window.addEventListener('scroll', () => {
+        if (!shown && window.scrollY > 300) {
+          shopFloat.classList.add('is-visible');
+          shown = true;
+        }
+      }, { passive: true });
+
+      // También mostrar después de 3 segundos si no scrollearon
+      setTimeout(() => {
+        if (!shown) {
+          shopFloat.classList.add('is-visible');
+          shown = true;
+        }
+      }, 3000);
+    }
+  }
+</script>

@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.recoplas.com.ar/sitemap-index.xml
+
+# No indexar páginas transaccionales
+Disallow: /carrito
+Disallow: /checkout
+Disallow: /mi-cuenta

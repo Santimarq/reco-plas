@@ -281,6 +281,10 @@ const menuItems = [
     background: var(--dk); border-radius: 2px;
   }
   @media (min-width: 1024px) { .header-burger { display: none; } }
+  @media (max-width: 480px) {
+    .header-inner { padding: 0 1rem; gap: 1rem; }
+    .logo-img { height: 44px; }
+  }
 
   /* Mobile menu */
   .mobile-menu {
@@ -352,8 +356,11 @@ const menuItems = [
   }, { passive: true });
 
   // Mobile toggle
-  document.getElementById('menu-toggle')?.addEventListener('click', () => {
-    document.getElementById('mobile-menu')?.classList.toggle('hidden');
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  menuToggle?.addEventListener('click', () => {
+    const isHidden = mobileMenu?.classList.toggle('hidden');
+    document.body.style.overflow = isHidden ? '' : 'hidden';
   });
 
   // Mobile dropdown toggle
@@ -392,5 +399,31 @@ const menuItems = [
     document.getElementById('cart-drawer')?.classList.add('open');
     document.getElementById('cart-overlay')?.classList.add('open');
     document.body.style.overflow = 'hidden';
+  });
+
+  // Search — redirect to /productos with search param
+  function handleSearch(input: HTMLInputElement) {
+    const query = input.value.trim();
+    if (query.length > 0) {
+      window.location.href = `/productos?buscar=${encodeURIComponent(query)}#catalogo`;
+    }
+  }
+
+  // Desktop search
+  const desktopSearch = document.querySelector('.search-bar .search-input') as HTMLInputElement;
+  desktopSearch?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleSearch(desktopSearch);
+    }
+  });
+
+  // Mobile search
+  const mobileSearch = document.querySelector('.mobile-search input') as HTMLInputElement;
+  mobileSearch?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleSearch(mobileSearch);
+    }
   });
 </script>
