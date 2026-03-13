@@ -9,19 +9,19 @@ const categoriasLineas = [
     titulo: 'Línea Estándar',
     descripcion: 'Bobinas, camiseta, consorcio, emblocadas y más. Medidas listas para entregar.',
     imagen: '/images/cat-estandar.webp',
-    link: '/productos?cat=estandar'
+    link: '/productos'
   },
   {
     titulo: 'Línea Impresa',
     descripcion: 'Tu marca impresa con flexografía de alta calidad. Hasta 4 colores.',
     imagen: '/images/cat-impresion.webp',
-    link: '/productos?cat=impresion'
+    link: '/productos/linea-impresa'
   },
   {
     titulo: 'Línea Personalizada',
     descripcion: 'Fabricamos a medida. Definimos material, forma y sistema de envasado.',
     imagen: '/images/cat-personalizada.webp',
-    link: '/productos?cat=personalizada'
+    link: '/productos/linea-personalizada'
   },
 ];
 
@@ -30,9 +30,9 @@ const wcCategorias = await getCategorias();
 const categoriasProductos = wcCategorias.filter(c => c.count > 0 && c.slug !== 'sin-categorizar');
 
 const stats = [
-  { valor: '+13', label: 'Años de experiencia' },
   { valor: '+300', label: 'Clientes activos' },
   { valor: '100%', label: 'Producción nacional' },
+  { valor: '24hs', label: 'Respuesta garantizada' },
 ];
 
 const heroSlides = [
