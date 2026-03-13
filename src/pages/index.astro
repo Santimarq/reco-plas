@@ -639,11 +639,12 @@ const heroSlides = [
   }
   @media (max-width: 1023px) {
     .hero__container { grid-template-columns: 1fr; }
-    .hero__title { font-size: clamp(2.4rem, 8vw, 3rem); }
+    .hero__title { font-size: clamp(2rem, 7vw, 3rem); }
     .hero__content { text-align: center; }
-    .hero__text { margin-left: auto; margin-right: auto; }
+    .hero__text { margin-left: auto; margin-right: auto; font-size: 1rem; }
     .hero__actions { justify-content: center; }
     .hero__badge { margin-left: auto; margin-right: auto; }
+    .hero { min-height: 75vh; padding-bottom: 4rem; }
   }
 
   @keyframes pulse-dot {
@@ -1159,19 +1160,52 @@ const heroSlides = [
   }
 
   @media (max-width: 640px) {
-    .cta { min-height: 50vh; padding: 4rem 0; }
-    .cta__container { padding: 0 1.5rem; }
-    .cta__title { font-size: clamp(1.6rem, 7vw, 2.2rem); }
+    /* Hero */
+    .hero { min-height: 65vh; padding-bottom: 3rem; }
+    .hero__container { padding: 0 1.25rem; }
+    .hero__title { font-size: clamp(1.75rem, 7vw, 2.4rem); }
+    .hero__text { font-size: .95rem; margin-bottom: 1.5rem; }
+    .hero__badge { font-size: .78rem; padding: .4rem 1rem; margin-bottom: 1rem; }
+    .btn { font-size: .88rem; padding: .8rem 1.6rem; }
+    .btn--lg { padding: .85rem 2rem; font-size: .9rem; }
+
+    /* Intro */
+    .intro { padding: 3rem 0 3.5rem; }
+    .intro__container { padding: 0 1.25rem; gap: 2rem; }
+    .intro__video-wrap video { height: 220px; }
+    .intro__stat-number { font-size: 1.2rem; }
+    .intro__stat-label { font-size: .7rem; }
+    .intro__stat { padding: .85rem .75rem; }
+    .intro__features li strong { font-size: .88rem; }
+    .intro__features li span { font-size: .82rem; }
+    .section-tag { font-size: .7rem; padding: .35rem .85rem; }
+    .section-text { font-size: .9rem; }
+
+    /* Categories */
+    .categories { padding: 3rem 0 3.5rem; }
+    .categories__container { padding: 0 1.25rem; }
+    .categories__header { margin-bottom: 2rem; }
+    .cat-card { height: 280px; }
+    .cat-card__content { padding: 1.5rem; }
+    .cat-card__title { font-size: 1.25rem; }
+    .cat-card__desc { font-size: .85rem; margin-bottom: 1rem; }
+
+    /* Showcase */
+    .featured { padding: 3rem 0 3.5rem; }
+    .featured__container { padding: 0 1.25rem; }
+
+    /* Clients */
+    .clients { padding: 3rem 0; }
+    .clients__header { padding: 0 1.25rem; margin-bottom: 2rem; }
+    .clients__logo { width: 140px; height: 75px; }
+
+    /* CTA */
+    .cta { min-height: 45vh; padding: 3.5rem 0; }
+    .cta__container { padding: 0 1.25rem; }
+    .cta__title { font-size: clamp(1.5rem, 6.5vw, 2rem); }
+    .cta__text { font-size: .95rem; margin-bottom: 2rem; }
     .cta__actions { flex-direction: column; }
     .cta__actions .btn { justify-content: center; }
-
-    .clients__header { padding: 0 1.5rem; }
-
-    .categories__container { padding: 0 1.5rem; }
-
-    .intro__container { padding: 0 1.5rem; }
-
-    .hero__container { padding: 0 1.5rem; }
   }
 </style>
 

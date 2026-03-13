@@ -302,6 +302,19 @@ const proceso = [
     opacity: 1;
     transform: translateY(0);
   }
+
+  @media (max-width: 640px) {
+    :global(section.py-24) { padding-top: 3rem; padding-bottom: 3.5rem; }
+    :global(section.min-h-\[90vh\]) { min-height: 65vh; padding-bottom: 3rem; }
+    :global(section.min-h-\[400px\]) { min-height: 45vh; }
+    :global(.container) { padding-left: 1.25rem; padding-right: 1.25rem; }
+    :global(section.min-h-\[400px\] .py-20) { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+    :global(a.rounded-full), :global(a.inline-flex.rounded-full) {
+      font-size: .88rem;
+      padding: .8rem 1.6rem;
+    }
+    :global(img.h-\[400px\]) { height: 280px; }
+  }
 </style>
 
 <script>

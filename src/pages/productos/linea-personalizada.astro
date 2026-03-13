@@ -595,8 +595,21 @@ const WA_NUMBER = '543482200375';
   .consulta__grid { grid-template-columns: 1fr; gap: 2.5rem; }
 }
 @media (max-width: 640px) {
+  .hero { min-height: 65vh; padding-bottom: 3rem; }
+  .hero__container { padding: 0 1.25rem; }
+  .hero__img-wrap img { height: clamp(250px, 50vw, 420px); }
+  .ventajas { padding: 3rem 0 3.5rem; }
+  .ventajas__container { padding: 0 1.25rem; }
+  .trabajos { padding: 3rem 0 3.5rem; }
+  .trabajos__container { padding: 0 1.25rem; }
   .trabajos__gallery { grid-template-columns: repeat(2, 1fr); }
-  .consulta__form-wrap { padding: 1.75rem; }
+  .consulta { padding: 3rem 0 3.5rem; }
+  .consulta__container { padding: 0 1.25rem; }
+  .consulta__form-wrap { padding: 1.5rem; }
+  .consulta__field label { font-size: .85rem; }
+  .consulta__field input, .consulta__field textarea { font-size: .95rem; }
+  .rp-btn { font-size: .88rem; padding: .8rem 1.6rem; }
+  .hero__floating-sub { font-size: .78rem; }
   .lightbox__nav { width: 40px; height: 40px; }
   .lightbox__nav--prev { left: .75rem; }
   .lightbox__nav--next { right: .75rem; }

@@ -641,8 +641,14 @@ const categoriasActivas = categorias.filter(c => c.count > 0 && c.slug !== 'sin-
 }
 
 @media (max-width: 640px) {
-  .cta { min-height: 50vh; padding: 4rem 0; }
-  .cta__container { padding: 0 1.5rem; }
+  .hero { min-height: 65vh; padding-bottom: 3rem; }
+  .hero__container { padding: 0 1.25rem; }
+  .catalogo { padding: 2rem 0 3.5rem; }
+  .catalogo__container { padding: 0 1.25rem; }
+  .hero__floating-sub { font-size: .78rem; }
+  .rp-btn { font-size: .88rem; padding: .8rem 1.6rem; }
+  .cta { min-height: 45vh; padding: 3.5rem 0; }
+  .cta__container { padding: 0 1.25rem; }
   .cta__title { font-size: clamp(1.6rem, 7vw, 2.2rem); }
   .cta__actions { flex-direction: column; }
   .cta__actions .rp-btn { justify-content: center; }

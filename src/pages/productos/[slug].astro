@@ -827,16 +827,23 @@ const multiplo = multiploAttr ? parseFloat(multiploAttr.options[0]) : (multiploM
 }
 
 @media (max-width: 640px) {
+  .product-section { padding: 2rem 0 3rem; }
+  .product__container { padding: 0 1.25rem; }
   .product__actions { flex-direction: column; }
   .product__add-btn { padding: .85rem; }
   .product__name { font-size: 1.3rem; }
   .product__price { font-size: 1.6rem; }
-  .cta { min-height: 50vh; padding: 4rem 0; }
-  .cta__container { padding: 0 1.5rem; }
+  .desc-section { padding: 3rem 0 3.5rem; }
+  .desc-section__container { padding: 0 1.25rem; }
+  .related { padding: 3rem 0 3.5rem; }
+  .related__container { padding: 0 1.25rem; }
+  .rp-btn { font-size: .88rem; padding: .8rem 1.6rem; }
+  .cta { min-height: 45vh; padding: 3.5rem 0; }
+  .cta__container { padding: 0 1.25rem; }
   .cta__title { font-size: clamp(1.6rem, 7vw, 2.2rem); }
   .cta__actions { flex-direction: column; }
   .cta__actions .rp-btn { justify-content: center; }
-  .breadcrumbs__container { font-size: .75rem; }
+  .breadcrumbs__container { font-size: .78rem; }
 }
 
 /* ====== ANIMATIONS ====== */
