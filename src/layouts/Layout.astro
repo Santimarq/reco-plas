@@ -124,5 +124,23 @@ const ogImage = image.startsWith("http") ? image : `${siteUrl}${image}`;
   <body>
     <slot />
     <ShopFloat />
+    <script>
+      // Force autoplay videos on mobile (iOS/Android sometimes block autoplay)
+      document.querySelectorAll('video[autoplay]').forEach(video => {
+        const v = video as HTMLVideoElement;
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              v.play().catch(() => {});
+            }
+          });
+        }, { threshold: 0.25 });
+        observer.observe(v);
+        // Also try on first touch (some browsers need user gesture)
+        document.addEventListener('touchstart', () => {
+          v.play().catch(() => {});
+        }, { once: true });
+      });
+    </script>
   </body>
 </html>

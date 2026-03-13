@@ -281,9 +281,18 @@ const menuItems = [
     background: var(--dk); border-radius: 2px;
   }
   @media (min-width: 1024px) { .header-burger { display: none; } }
+  @media (max-width: 1023px) {
+    .header-inner {
+      grid-template-columns: 1fr auto;
+      padding: 0 1.25rem;
+      gap: .75rem;
+    }
+    .header-nav { display: none; }
+    .logo-img { height: 48px; }
+  }
   @media (max-width: 480px) {
-    .header-inner { padding: 0 1rem; gap: 1rem; }
-    .logo-img { height: 44px; }
+    .header-inner { padding: 0 1rem; }
+    .logo-img { height: 42px; }
   }
 
   /* Mobile menu */
