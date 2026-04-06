@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import ShopFloat from '../components/ShopFloat.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
 
 interface Props {
   title?: string;
@@ -124,6 +125,7 @@ const ogImage = image.startsWith("http") ? image : `${siteUrl}${image}`;
   <body>
     <slot />
     <ShopFloat />
+    <WhatsAppFloat />
     <script>
       // Force autoplay videos on mobile (iOS/Android sometimes block autoplay)
       document.querySelectorAll('video[autoplay]').forEach(video => {
