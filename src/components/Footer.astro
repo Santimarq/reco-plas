@@ -92,15 +92,15 @@ const links = {
   <div class="footer__bottom">
     <p>© {currentYear} RecoPlas S.R.L. Todos los derechos reservados.</p>
     <div class="footer__bottom-links">
-      <span>Política de Privacidad</span>
-      <span>Términos y Condiciones</span>
-      <span>Defensa del Consumidor</span>
+      <a href="#">Politica de Privacidad</a>
+      <a href="#">Terminos y Condiciones</a>
+      <a href="#">Defensa del Consumidor</a>
     </div>
   </div>
 
   <!-- Créditos -->
   <div class="footer__credits">
-    <p>Diseño y desarrollo por <a href="https://santiagomarquez.tech/" target="_blank" rel="noopener">Santiago Márquez</a></p>
+    <p>Diseño y desarrollo por <a href="https://santiagomarquez.tech/" target="_blank" rel="noopener">Santiago Márquez Tech</a></p>
   </div>
 </footer>
 
@@ -173,12 +173,12 @@ const links = {
   .footer__bottom p {
     color: rgba(255,255,255,.35); font-size: .78rem; margin: 0;
   }
-  .footer__bottom-links { display: flex; gap: 1.5rem; }
+  .footer__bottom-links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
   .footer__bottom-links a {
-    color: rgba(255,255,255,.35); font-size: .78rem;
+    color: rgba(255,255,255,.3); font-size: .7rem;
     text-decoration: none; transition: color .2s;
   }
-  .footer__bottom-links a:hover { color: rgba(255,255,255,.7); }
+  .footer__bottom-links a:hover { color: rgba(255,255,255,.6); }
 
   /* Créditos */
   .footer__credits {
