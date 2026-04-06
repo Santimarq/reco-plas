@@ -29,9 +29,9 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
-    const lineItems: OrderLineItem[] = (cart as CartItem[]).map((item) => ({
-      product_id: Number(item.id),
-      quantity: Number(item.cantidad),
+    const lineItems = (cart as CartItem[]).map((item) => ({
+      product_id: parseInt(String(item.id), 10),
+      quantity: parseInt(String(item.cantidad), 10),
     }));
 
     const metaData: { key: string; value: string }[] = [];

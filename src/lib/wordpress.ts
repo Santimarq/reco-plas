@@ -135,14 +135,21 @@ export interface OrderResult {
 }
 
 export async function createOrder(orderData: OrderData): Promise<OrderResult> {
+  // Forzar integers en line_items para WooCommerce
+  const sanitizedData = {
+    ...orderData,
+    line_items: orderData.line_items.map(item => ({
+      product_id: Math.round(item.product_id),
+      quantity: Math.round(item.quantity),
+    })),
+    set_paid: false,
+    status: 'on-hold',
+  };
+
   const response = await fetch(wooUrl('orders'), {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      ...orderData,
-      set_paid: false,
-      status: 'on-hold',
-    }),
+    body: JSON.stringify(sanitizedData),
   });
 
   if (!response.ok) {
