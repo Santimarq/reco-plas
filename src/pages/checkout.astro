@@ -633,7 +633,7 @@ document.getElementById('checkout-form')?.addEventListener('submit', async (e) =
     const result = await response.json();
 
     if (!response.ok) {
-      throw new Error(result.error || 'Error al procesar el pedido');
+      throw new Error(result.error || result.details || 'Error al procesar el pedido');
     }
 
     // Success — show order confirmation
