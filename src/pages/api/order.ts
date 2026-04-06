@@ -15,7 +15,7 @@ export const POST: APIRoute = async ({ request }) => {
     const { nombre, apellido, email, telefono, empresa, cuit, direccion, ciudad, provincia, cp, notas, cart } = body;
 
     // Validar campos requeridos
-    if (!nombre || !apellido || !email || !telefono || !direccion || !ciudad || !provincia || !cp) {
+    if (!nombre || !apellido || !email || !telefono) {
       return new Response(JSON.stringify({ error: 'Faltan campos obligatorios' }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' },
@@ -44,19 +44,19 @@ export const POST: APIRoute = async ({ request }) => {
         email,
         phone: telefono,
         company: empresa || '',
-        address_1: direccion,
-        city: ciudad,
-        state: provincia,
-        postcode: cp,
+        address_1: '',
+        city: '',
+        state: '',
+        postcode: '',
         country: 'AR',
       },
       shipping: {
         first_name: nombre,
         last_name: apellido,
-        address_1: direccion,
-        city: ciudad,
-        state: provincia,
-        postcode: cp,
+        address_1: '',
+        city: '',
+        state: '',
+        postcode: '',
         country: 'AR',
       },
       line_items: lineItems,
