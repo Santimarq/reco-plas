@@ -1,0 +1,141 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Politica de Privacidad | RecoPlas" description="Politica de privacidad y proteccion de datos personales de RecoPlas S.R.L.">
+  <Header />
+
+  <section class="legal">
+    <div class="legal__container">
+      <h1 class="legal__title">Politica de Privacidad</h1>
+      <p class="legal__updated">Ultima actualizacion: Abril 2026</p>
+
+      <div class="legal__content">
+        <p>En <strong>Reco Plas S.R.L.</strong> (CUIT: 30-71685889-4), con domicilio en Blvd. J. D. Peron 2642, Reconquista, Santa Fe, nos comprometemos a proteger la privacidad de nuestros usuarios. La presente politica describe como recopilamos, usamos y protegemos tu informacion personal en cumplimiento con la Ley N° 25.326 de Proteccion de Datos Personales de la Republica Argentina.</p>
+
+        <h2>1. Informacion que recopilamos</h2>
+        <p>Recopilamos la siguiente informacion cuando realizas una compra o completar un formulario en nuestro sitio:</p>
+        <ul>
+          <li>Nombre y apellido</li>
+          <li>Direccion de correo electronico</li>
+          <li>Numero de telefono</li>
+          <li>Empresa o razon social (opcional)</li>
+          <li>CUIT (opcional)</li>
+          <li>Informacion del pedido (productos, cantidades, montos)</li>
+        </ul>
+
+        <h2>2. Uso de la informacion</h2>
+        <p>Utilizamos la informacion recopilada para:</p>
+        <ul>
+          <li>Procesar y gestionar tus pedidos</li>
+          <li>Comunicarnos contigo sobre el estado de tu compra</li>
+          <li>Coordinar el envio y la entrega de productos</li>
+          <li>Emitir facturacion cuando sea solicitada</li>
+          <li>Responder consultas y brindar soporte</li>
+          <li>Mejorar nuestros productos y servicios</li>
+        </ul>
+
+        <h2>3. Proteccion de datos</h2>
+        <p>Implementamos medidas de seguridad tecnicas y organizativas para proteger tu informacion personal contra el acceso no autorizado, la alteracion, divulgacion o destruccion. Los datos de pago (transferencias bancarias) no son almacenados en nuestro sitio web.</p>
+
+        <h2>4. Comparticion de datos</h2>
+        <p>No vendemos, intercambiamos ni transferimos tu informacion personal a terceros, salvo en los siguientes casos:</p>
+        <ul>
+          <li>Cuando sea necesario para completar tu pedido (ej: servicio de logistica)</li>
+          <li>Cuando sea requerido por ley o autoridad competente</li>
+        </ul>
+
+        <h2>5. Cookies</h2>
+        <p>Nuestro sitio utiliza cookies y tecnologias similares para mejorar la experiencia de navegacion. Estas incluyen:</p>
+        <ul>
+          <li><strong>Cookies esenciales:</strong> necesarias para el funcionamiento del carrito de compras y la navegacion</li>
+          <li><strong>Cookies analiticas:</strong> para entender como los usuarios interactuan con nuestro sitio</li>
+        </ul>
+        <p>Podes configurar tu navegador para rechazar cookies, aunque esto puede afectar algunas funcionalidades del sitio.</p>
+
+        <h2>6. Derechos del titular</h2>
+        <p>De acuerdo con la Ley 25.326, tenes derecho a:</p>
+        <ul>
+          <li>Acceder a tus datos personales</li>
+          <li>Solicitar la rectificacion de datos incorrectos</li>
+          <li>Solicitar la supresion de tus datos</li>
+          <li>Oponerte al tratamiento de tus datos</li>
+        </ul>
+        <p>Para ejercer estos derechos, contactanos a <a href="mailto:ventas@recoplas.com.ar">ventas@recoplas.com.ar</a>.</p>
+
+        <h2>7. Cambios en esta politica</h2>
+        <p>Nos reservamos el derecho de actualizar esta politica en cualquier momento. Los cambios seran publicados en esta pagina con la fecha de ultima actualizacion.</p>
+
+        <h2>8. Contacto</h2>
+        <p>Si tenes preguntas sobre esta politica de privacidad, podes contactarnos:</p>
+        <ul>
+          <li><strong>Email:</strong> <a href="mailto:ventas@recoplas.com.ar">ventas@recoplas.com.ar</a></li>
+          <li><strong>Telefono:</strong> <a href="tel:+543482312021">03482 31-2021</a></li>
+          <li><strong>Direccion:</strong> Blvd. J. D. Peron 2642, Reconquista, Santa Fe</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+:root {
+  --g: #00AA28; --gd: #008f22; --gp: #e8f9ed;
+  --dk: #1a1a1a; --gr: #64748b;
+  --border: #e5e7eb;
+}
+
+.legal {
+  padding: 3rem 0 5rem;
+  background: #f8faf9;
+  min-height: 70vh;
+}
+.legal__container {
+  max-width: 800px; margin: 0 auto; padding: 0 2rem;
+}
+.legal__title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem; font-weight: 800; color: var(--dk);
+  margin: 0 0 .5rem;
+}
+.legal__updated {
+  font-size: .82rem; color: var(--gr); margin: 0 0 2.5rem;
+}
+.legal__content {
+  background: #fff; border-radius: 20px;
+  border: 1px solid var(--border);
+  padding: 2.5rem;
+}
+.legal__content h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem; font-weight: 800; color: var(--dk);
+  margin: 2rem 0 .75rem;
+}
+.legal__content h2:first-of-type { margin-top: .5rem; }
+.legal__content p {
+  font-size: .9rem; color: #374151; line-height: 1.8; margin: 0 0 1rem;
+}
+.legal__content ul {
+  margin: 0 0 1rem; padding-left: 1.5rem;
+}
+.legal__content li {
+  font-size: .9rem; color: #374151; line-height: 1.8;
+  margin-bottom: .25rem;
+}
+.legal__content a {
+  color: var(--g); text-decoration: none; font-weight: 600;
+}
+.legal__content a:hover { text-decoration: underline; }
+.legal__content strong { color: var(--dk); }
+
+@media (max-width: 580px) {
+  .legal { padding: 2rem 0 3rem; }
+  .legal__container { padding: 0 1.25rem; }
+  .legal__title { font-size: 1.5rem; }
+  .legal__content { padding: 1.5rem; }
+}
+</style>

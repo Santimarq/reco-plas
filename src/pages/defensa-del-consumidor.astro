@@ -1,0 +1,159 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Defensa del Consumidor | RecoPlas" description="Informacion sobre tus derechos como consumidor - RecoPlas S.R.L.">
+  <Header />
+
+  <section class="legal">
+    <div class="legal__container">
+      <h1 class="legal__title">Defensa del Consumidor</h1>
+      <p class="legal__updated">Ultima actualizacion: Abril 2026</p>
+
+      <div class="legal__content">
+        <p>En <strong>Reco Plas S.R.L.</strong> respetamos y garantizamos todos los derechos de los consumidores establecidos en la Ley N° 24.240 de Defensa del Consumidor y sus modificatorias.</p>
+
+        <h2>Tus derechos como consumidor</h2>
+        <p>Como consumidor de nuestros productos, tenes derecho a:</p>
+        <ul>
+          <li><strong>Informacion veraz:</strong> Recibir informacion clara y detallada sobre los productos, precios y condiciones de compra</li>
+          <li><strong>Proteccion de la salud y seguridad:</strong> Adquirir productos que no presenten riesgos para tu salud o seguridad</li>
+          <li><strong>Garantia legal:</strong> Todos los productos cuentan con garantia por defectos de fabricacion</li>
+          <li><strong>Derecho de arrepentimiento:</strong> Podes revocar tu compra dentro de los 10 dias corridos desde la recepcion del producto</li>
+          <li><strong>Trato digno y equitativo:</strong> Recibir un trato respetuoso y sin discriminacion</li>
+        </ul>
+
+        <h2>Derecho de arrepentimiento</h2>
+        <p>De acuerdo con el Art. 34 de la Ley 24.240, en toda compra realizada por medios electronicos tenes derecho a revocar la operacion durante el plazo de 10 dias corridos contados a partir de la fecha en que recibiste el producto.</p>
+        <p>Para ejercer este derecho:</p>
+        <ol>
+          <li>Comunicate con nosotros por WhatsApp al <a href="https://wa.me/543482312021" target="_blank" rel="noopener">3482 31-2021</a> o por email a <a href="mailto:ventas@recoplas.com.ar">ventas@recoplas.com.ar</a></li>
+          <li>Indica tu numero de pedido y el motivo de la devolucion</li>
+          <li>El producto debe ser devuelto en las mismas condiciones en que fue recibido</li>
+          <li>El reintegro del monto se realizara dentro de los 10 dias habiles siguientes</li>
+        </ol>
+
+        <h2>Reclamos</h2>
+        <p>Si tenes algun reclamo o inconveniente con tu compra, podes contactarnos por las siguientes vias:</p>
+        <ul>
+          <li><strong>WhatsApp:</strong> <a href="https://wa.me/543482312021" target="_blank" rel="noopener">3482 31-2021</a></li>
+          <li><strong>Email:</strong> <a href="mailto:ventas@recoplas.com.ar">ventas@recoplas.com.ar</a></li>
+          <li><strong>Telefono:</strong> <a href="tel:+543482312021">03482 31-2021</a></li>
+          <li><strong>Presencial:</strong> Blvd. J. D. Peron 2642, Reconquista, Santa Fe</li>
+        </ul>
+        <p>Nos comprometemos a responder tu reclamo en un plazo maximo de 10 dias habiles.</p>
+
+        <h2>Organismos de defensa del consumidor</h2>
+        <p>Si no pudimos resolver tu reclamo, podes acudir a los siguientes organismos:</p>
+
+        <div class="legal__org">
+          <h3>Direccion Nacional de Defensa del Consumidor</h3>
+          <p>Ministerio de Economia de la Nacion</p>
+          <ul>
+            <li>Linea gratuita: 0800-666-1518</li>
+            <li>Web: <a href="https://www.argentina.gob.ar/produccion/defensadelconsumidor" target="_blank" rel="noopener">www.argentina.gob.ar/produccion/defensadelconsumidor</a></li>
+          </ul>
+        </div>
+
+        <div class="legal__org">
+          <h3>Ventanilla Unica Federal de Defensa del Consumidor (VUFDC)</h3>
+          <p>Para iniciar un reclamo online:</p>
+          <ul>
+            <li>Web: <a href="https://www.consumoprotegido.gob.ar" target="_blank" rel="noopener">www.consumoprotegido.gob.ar</a></li>
+          </ul>
+        </div>
+
+        <div class="legal__org">
+          <h3>Oficina Municipal de Defensa del Consumidor - Reconquista</h3>
+          <ul>
+            <li>Direccion: Municipalidad de Reconquista, Santa Fe</li>
+          </ul>
+        </div>
+
+        <h2>Datos del proveedor</h2>
+        <ul>
+          <li><strong>Razon social:</strong> Reco Plas S.R.L.</li>
+          <li><strong>CUIT:</strong> 30-71685889-4</li>
+          <li><strong>Condicion IVA:</strong> Responsable Inscripto</li>
+          <li><strong>Domicilio:</strong> Blvd. J. D. Peron 2642, Reconquista, Santa Fe</li>
+          <li><strong>Email:</strong> <a href="mailto:ventas@recoplas.com.ar">ventas@recoplas.com.ar</a></li>
+          <li><strong>Telefono:</strong> <a href="tel:+543482312021">03482 31-2021</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+:root {
+  --g: #00AA28; --gd: #008f22; --gp: #e8f9ed;
+  --dk: #1a1a1a; --gr: #64748b;
+  --border: #e5e7eb;
+}
+
+.legal {
+  padding: 3rem 0 5rem;
+  background: #f8faf9;
+  min-height: 70vh;
+}
+.legal__container {
+  max-width: 800px; margin: 0 auto; padding: 0 2rem;
+}
+.legal__title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem; font-weight: 800; color: var(--dk);
+  margin: 0 0 .5rem;
+}
+.legal__updated {
+  font-size: .82rem; color: var(--gr); margin: 0 0 2.5rem;
+}
+.legal__content {
+  background: #fff; border-radius: 20px;
+  border: 1px solid var(--border);
+  padding: 2.5rem;
+}
+.legal__content h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem; font-weight: 800; color: var(--dk);
+  margin: 2rem 0 .75rem;
+}
+.legal__content h2:first-of-type { margin-top: .5rem; }
+.legal__content h3 {
+  font-size: .95rem; font-weight: 700; color: var(--dk);
+  margin: 0 0 .25rem;
+}
+.legal__content p {
+  font-size: .9rem; color: #374151; line-height: 1.8; margin: 0 0 1rem;
+}
+.legal__content ul, .legal__content ol {
+  margin: 0 0 1rem; padding-left: 1.5rem;
+}
+.legal__content li {
+  font-size: .9rem; color: #374151; line-height: 1.8;
+  margin-bottom: .25rem;
+}
+.legal__content a {
+  color: var(--g); text-decoration: none; font-weight: 600;
+}
+.legal__content a:hover { text-decoration: underline; }
+.legal__content strong { color: var(--dk); }
+
+.legal__org {
+  background: var(--gp); border-radius: 12px;
+  padding: 1.25rem; margin-bottom: 1rem;
+}
+.legal__org h3 { color: var(--gd); }
+.legal__org p { margin-bottom: .5rem; }
+.legal__org ul { margin-bottom: 0; }
+
+@media (max-width: 580px) {
+  .legal { padding: 2rem 0 3rem; }
+  .legal__container { padding: 0 1.25rem; }
+  .legal__title { font-size: 1.5rem; }
+  .legal__content { padding: 1.5rem; }
+}
+</style>
