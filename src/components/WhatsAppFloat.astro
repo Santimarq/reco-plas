@@ -21,8 +21,8 @@
 <style>
   .wa-float {
     position: fixed;
-    bottom: 28px;
-    right: 28px;
+    bottom: 96px;
+    left: 28px;
     z-index: 890;
     display: flex;
     align-items: center;
@@ -74,7 +74,7 @@
   /* Tooltip */
   .wa-float__tooltip {
     position: absolute;
-    right: 72px;
+    left: 72px;
     bottom: 10px;
     background: #fff;
     border-radius: 12px;
@@ -97,11 +97,11 @@
   .wa-float__tooltip::after {
     content: '';
     position: absolute;
-    right: -6px;
+    left: -6px;
     top: 50%;
     transform: translateY(-50%);
     border: 6px solid transparent;
-    border-left-color: #fff;
+    border-right-color: #fff;
   }
   .wa-float__tooltip span {
     font-size: .82rem;
@@ -117,10 +117,10 @@
   .wa-float__tooltip-close:hover { color: #64748b; }
 
   @media (max-width: 640px) {
-    .wa-float { bottom: 20px; right: 20px; }
+    .wa-float { bottom: 80px; left: 20px; }
     .wa-float__btn { width: 52px; height: 52px; }
     .wa-float__icon { width: 24px; height: 24px; }
-    .wa-float__tooltip { right: 62px; }
+    .wa-float__tooltip { left: 62px; }
   }
 </style>
 
