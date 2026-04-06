@@ -158,11 +158,44 @@ import Footer from '../components/Footer.astro';
           <div class="checkout__success-icon">
             <svg width="48" height="48" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
           </div>
-          <h2>Pedido confirmado</h2>
-          <p>Recibimos tu pedido. Te contactaremos a la brevedad para coordinar el envío y el pago.</p>
+          <h2 id="success-title">Pedido confirmado</h2>
+          <p id="success-msg">Recibimos tu pedido. Te contactaremos a la brevedad para coordinar el envío y el pago.</p>
+
+          <!-- Datos bancarios (solo para transferencia) -->
+          <div class="checkout__bank-info" id="bank-info" style="display:none;">
+            <p class="checkout__bank-label">Realizá la transferencia a:</p>
+            <div class="checkout__bank-rows">
+              <div class="checkout__bank-row">
+                <span>Banco</span>
+                <strong>COMPLETAR</strong>
+              </div>
+              <div class="checkout__bank-row">
+                <span>Titular</span>
+                <strong>COMPLETAR</strong>
+              </div>
+              <div class="checkout__bank-row">
+                <span>CUIT</span>
+                <strong>COMPLETAR</strong>
+              </div>
+              <div class="checkout__bank-row checkout__bank-row--highlight">
+                <span>CBU / CVU</span>
+                <strong id="bank-cbu">COMPLETAR</strong>
+              </div>
+              <div class="checkout__bank-row checkout__bank-row--highlight">
+                <span>Alias</span>
+                <strong>COMPLETAR</strong>
+              </div>
+              <div class="checkout__bank-row checkout__bank-row--total">
+                <span>Monto a transferir</span>
+                <strong id="bank-total"></strong>
+              </div>
+            </div>
+            <p class="checkout__bank-note">Una vez realizada la transferencia, envianos el comprobante por WhatsApp para confirmar tu pedido.</p>
+          </div>
+
           <div class="checkout__success-actions">
             <a href="/" class="rp-btn rp-btn--green">Volver al inicio</a>
-            <a href="https://wa.me/543482200375" target="_blank" rel="noopener" class="rp-btn rp-btn--outline">Consultanos por WhatsApp</a>
+            <a href="https://wa.me/543482200375" target="_blank" rel="noopener" class="rp-btn rp-btn--outline" id="success-wa-btn">Enviar comprobante por WhatsApp</a>
           </div>
         </div>
       </div>
@@ -379,6 +412,50 @@ import Footer from '../components/Footer.astro';
   display: flex; flex-direction: column; gap: .75rem;
 }
 
+/* Bank info */
+.checkout__bank-info {
+  margin: 1.5rem 0;
+  background: var(--gp);
+  border: 1px solid rgba(0,170,40,.2);
+  border-radius: 14px;
+  padding: 1.25rem;
+  text-align: left;
+}
+.checkout__bank-label {
+  font-size: .8rem; font-weight: 700; color: var(--g);
+  text-transform: uppercase; letter-spacing: .05em;
+  margin: 0 0 .85rem;
+}
+.checkout__bank-rows {
+  display: flex; flex-direction: column; gap: .5rem;
+}
+.checkout__bank-row {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: .85rem; padding: .4rem 0;
+  border-bottom: 1px solid rgba(0,170,40,.12);
+}
+.checkout__bank-row:last-child { border-bottom: none; }
+.checkout__bank-row span { color: var(--gr); }
+.checkout__bank-row strong { color: var(--dk); font-weight: 700; }
+.checkout__bank-row--highlight strong {
+  font-family: 'Montserrat', monospace;
+  font-size: .9rem; letter-spacing: .03em;
+}
+.checkout__bank-row--total {
+  margin-top: .25rem; padding-top: .65rem;
+  border-top: 2px solid rgba(0,170,40,.2) !important;
+  border-bottom: none !important;
+}
+.checkout__bank-row--total span { font-weight: 600; color: var(--dk); }
+.checkout__bank-row--total strong {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem; font-weight: 900; color: var(--g);
+}
+.checkout__bank-note {
+  font-size: .78rem; color: var(--gr); margin: .85rem 0 0;
+  line-height: 1.5;
+}
+
 @media (max-width: 900px) {
   .checkout__layout { grid-template-columns: 1fr; }
   .checkout__summary-card { position: static; }
@@ -489,31 +566,60 @@ document.querySelectorAll('.checkout__payment-option').forEach(opt => {
   });
 });
 
+// Build WA message helper
+function buildWAMsg(data: FormData, cart: CartItem[], total: number, pago: string): string {
+  const metodo = pago === 'transferencia' ? 'Transferencia bancaria' : 'Coordinar por WhatsApp';
+  let msg = `Hola! Quiero hacer un pedido 🛍\n\n`;
+  cart.forEach(item => {
+    msg += `▸ ${item.nombre} x${item.cantidad} = ${formatARS(item.precio * item.cantidad)}\n`;
+  });
+  msg += `\n*Total: ${formatARS(total)}*`;
+  msg += `\n*Método de pago:* ${metodo}`;
+  msg += `\n\n*Datos de contacto:*`;
+  msg += `\nNombre: ${data.get('nombre')} ${data.get('apellido')}`;
+  msg += `\nEmail: ${data.get('email')}`;
+  msg += `\nTel: ${data.get('telefono')}`;
+  if (data.get('empresa')) msg += `\nEmpresa: ${data.get('empresa')}`;
+  if (data.get('cuit')) msg += `\nCUIT: ${data.get('cuit')}`;
+  msg += `\n\n*Dirección de envío:*`;
+  msg += `\n${data.get('direccion')}, ${data.get('ciudad')}, ${data.get('provincia')} (CP ${data.get('cp')})`;
+  if (data.get('notas')) msg += `\n\n*Notas:* ${data.get('notas')}`;
+  return msg;
+}
+
 // Form submit
 document.getElementById('checkout-form')?.addEventListener('submit', (e) => {
   e.preventDefault();
   const form = e.target as HTMLFormElement;
   const data = new FormData(form);
   const cart = loadCart();
-  const pago = data.get('pago');
+  const pago = data.get('pago') as string;
+  const total = cart.reduce((s, i) => s + i.precio * i.cantidad, 0);
+
+  const waMsg = buildWAMsg(data, cart, total, pago);
+  const waUrl = `https://wa.me/543482200375?text=${encodeURIComponent(waMsg)}`;
 
   if (pago === 'whatsapp') {
-    // Build WhatsApp message
-    let msg = `Hola! Quiero hacer un pedido:\n\n`;
-    cart.forEach(item => {
-      msg += `- ${item.nombre} x${item.cantidad} = ${formatARS(item.precio * item.cantidad)}\n`;
-    });
-    const total = cart.reduce((s, i) => s + i.precio * i.cantidad, 0);
-    msg += `\nTotal: ${formatARS(total)}`;
-    msg += `\n\nNombre: ${data.get('nombre')} ${data.get('apellido')}`;
-    msg += `\nEmail: ${data.get('email')}`;
-    msg += `\nTel: ${data.get('telefono')}`;
-    if (data.get('empresa')) msg += `\nEmpresa: ${data.get('empresa')}`;
-    msg += `\nDirección: ${data.get('direccion')}, ${data.get('ciudad')}, ${data.get('provincia')} (${data.get('cp')})`;
-    if (data.get('notas')) msg += `\nNotas: ${data.get('notas')}`;
+    // Open WA directly
+    window.open(waUrl, '_blank');
+  }
 
-    const url = `https://wa.me/543482200375?text=${encodeURIComponent(msg)}`;
-    window.open(url, '_blank');
+  if (pago === 'transferencia') {
+    // Show bank info panel
+    document.getElementById('bank-info')!.style.display = 'block';
+    document.getElementById('bank-total')!.textContent = formatARS(total);
+    document.getElementById('success-title')!.textContent = '¡Pedido registrado!';
+    document.getElementById('success-msg')!.textContent = 'Realizá la transferencia con los datos de abajo y envianos el comprobante por WhatsApp para confirmar tu envío.';
+    // WA btn: send comprobante
+    const waBtn = document.getElementById('success-wa-btn') as HTMLAnchorElement;
+    waBtn.href = waUrl;
+    waBtn.textContent = 'Enviar comprobante por WhatsApp';
+  } else {
+    document.getElementById('success-title')!.textContent = 'Pedido confirmado';
+    document.getElementById('success-msg')!.textContent = 'Te contactaremos a la brevedad para coordinar el envío y el pago.';
+    const waBtn = document.getElementById('success-wa-btn') as HTMLAnchorElement;
+    waBtn.href = waUrl;
+    waBtn.textContent = 'Consultanos por WhatsApp';
   }
 
   // Show success

@@ -403,11 +403,17 @@ const menuItems = [
   window.addEventListener('storage', syncBadge);
   document.addEventListener('cart-updated', syncBadge);
 
-  // Open cart drawer
+  // Open cart drawer (or go to /carrito if drawer not present)
   document.getElementById('header-cart-btn')?.addEventListener('click', () => {
-    document.getElementById('cart-drawer')?.classList.add('open');
-    document.getElementById('cart-overlay')?.classList.add('open');
-    document.body.style.overflow = 'hidden';
+    const drawer = document.getElementById('cart-drawer');
+    const overlay = document.getElementById('cart-overlay');
+    if (drawer && overlay) {
+      drawer.classList.add('open');
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    } else {
+      window.location.href = '/carrito';
+    }
   });
 
   // Search — redirect to /productos with search param
