@@ -92,6 +92,73 @@ export async function getProductosByCategoria(categoriaId: number): Promise<Prod
   return getProductos({ category: categoriaId.toString() });
 }
 
+// Crear pedido en WooCommerce
+export interface OrderLineItem {
+  product_id: number;
+  quantity: number;
+}
+
+export interface OrderData {
+  billing: {
+    first_name: string;
+    last_name: string;
+    email: string;
+    phone: string;
+    company?: string;
+    address_1: string;
+    city: string;
+    state: string;
+    postcode: string;
+    country: string;
+  };
+  shipping: {
+    first_name: string;
+    last_name: string;
+    address_1: string;
+    city: string;
+    state: string;
+    postcode: string;
+    country: string;
+  };
+  line_items: OrderLineItem[];
+  payment_method: string;
+  payment_method_title: string;
+  customer_note?: string;
+  meta_data?: { key: string; value: string }[];
+}
+
+export interface OrderResult {
+  id: number;
+  number: string;
+  status: string;
+  total: string;
+}
+
+export async function createOrder(orderData: OrderData): Promise<OrderResult> {
+  const response = await fetch(wooUrl('orders'), {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      ...orderData,
+      set_paid: false,
+      status: 'on-hold',
+    }),
+  });
+
+  if (!response.ok) {
+    const error = await response.text();
+    throw new Error(`Error creando orden: ${response.status} - ${error}`);
+  }
+
+  const order = await response.json();
+  return {
+    id: order.id,
+    number: order.number,
+    status: order.status,
+    total: order.total,
+  };
+}
+
 // Formatear precio en pesos argentinos
 export function formatPrice(price: string | number): string {
   const numero = typeof price === 'string' ? parseFloat(price) : price;
