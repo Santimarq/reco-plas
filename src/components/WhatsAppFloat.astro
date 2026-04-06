@@ -21,8 +21,8 @@
 <style>
   .wa-float {
     position: fixed;
-    bottom: 96px;
-    left: 28px;
+    bottom: 28px;
+    right: 28px;
     z-index: 890;
     display: flex;
     align-items: center;
@@ -74,7 +74,7 @@
   /* Tooltip */
   .wa-float__tooltip {
     position: absolute;
-    left: 72px;
+    right: 72px;
     bottom: 10px;
     background: #fff;
     border-radius: 12px;
@@ -97,11 +97,11 @@
   .wa-float__tooltip::after {
     content: '';
     position: absolute;
-    left: -6px;
+    right: -6px;
     top: 50%;
     transform: translateY(-50%);
     border: 6px solid transparent;
-    border-right-color: #fff;
+    border-left-color: #fff;
   }
   .wa-float__tooltip span {
     font-size: .82rem;
@@ -116,11 +116,29 @@
   }
   .wa-float__tooltip-close:hover { color: #64748b; }
 
+  /* En paginas de productos: mover a la izquierda */
+  .wa-float--left {
+    right: auto;
+    left: 28px;
+  }
+  .wa-float--left .wa-float__tooltip {
+    right: auto;
+    left: 72px;
+  }
+  .wa-float--left .wa-float__tooltip::after {
+    right: auto;
+    left: -6px;
+    border-left-color: transparent;
+    border-right-color: #fff;
+  }
+
   @media (max-width: 640px) {
-    .wa-float { bottom: 80px; left: 20px; }
+    .wa-float { bottom: 20px; right: 20px; }
+    .wa-float--left { right: auto; left: 20px; }
     .wa-float__btn { width: 52px; height: 52px; }
     .wa-float__icon { width: 24px; height: 24px; }
-    .wa-float__tooltip { left: 62px; }
+    .wa-float__tooltip { right: 62px; }
+    .wa-float--left .wa-float__tooltip { right: auto; left: 62px; }
   }
 </style>
 
@@ -130,6 +148,11 @@
   const waTooltipClose = document.getElementById('wa-tooltip-close');
 
   if (waFloat && waTooltip) {
+    // En páginas de productos, mover a la izquierda para no chocar con el cart drawer
+    if (window.location.pathname.startsWith('/productos')) {
+      waFloat.classList.add('wa-float--left');
+    }
+
     let shown = false;
 
     function showButton() {
